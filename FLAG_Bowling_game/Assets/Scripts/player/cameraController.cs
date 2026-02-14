@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,12 +16,6 @@ public class cameraController : MonoBehaviour
     void Start()
     {
         thisCamera = GetComponentInChildren<Camera>();
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 
@@ -48,5 +41,4 @@ public class cameraController : MonoBehaviour
                 break;
         }
     }
-
 }

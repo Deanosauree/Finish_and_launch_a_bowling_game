@@ -1,17 +1,19 @@
-using System.Buffers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static cameraController;
 
 public class inputManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
 
     PlayerInput playerInputs;
     InputAction interactAction;
     InputAction panAction;
     InputAction lookAction;
     cameraController cameraControl;
+
+
+
     void Start()
     {
         playerInputs = GetComponent<PlayerInput>();
@@ -52,19 +54,19 @@ public class inputManager : MonoBehaviour
             {
                 thisDirection = enCameraPanDirections.down;
             }
+            else
+            {
+                
+            }
+
 
             if (thisDirection != enCameraPanDirections.none)
             {
                 cameraControl.PanCamera(thisDirection);
             }
         }
+
         if (context.action == interactAction) { }
         if (context.action == panAction) { }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
