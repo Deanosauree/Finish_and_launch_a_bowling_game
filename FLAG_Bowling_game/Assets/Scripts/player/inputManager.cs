@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static cameraController;
@@ -11,7 +13,6 @@ public class inputManager : MonoBehaviour
     InputAction panAction;
     InputAction lookAction;
     cameraController cameraControl;
-
 
 
     void Start()
@@ -66,7 +67,16 @@ public class inputManager : MonoBehaviour
             }
         }
 
-        if (context.action == interactAction) { }
+        if (context.action == interactAction) 
+        {
+            interact();
+        }
         if (context.action == panAction) { }
     }
+
+    private void interact()
+    {
+
+    }
 }
+

@@ -5,9 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 
 
-public class bowlingBallBase : MonoBehaviour
+public abstract class bowlingBallBase : MonoBehaviour
 {
-    public float points = 50;
-    public float additiveMultiplier = 1.0f;
-    public float mulMultiplier = 1.0f;
+    public float points = 0;
+    public float additiveMultiplier = 0;
+    public float mulMultiplier = 0;
+
+    public bowlingBallBase()
+    {
+    }
 }
