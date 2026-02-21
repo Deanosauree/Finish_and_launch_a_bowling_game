@@ -13,12 +13,16 @@ public class inputManager : MonoBehaviour
     InputAction panAction;
     InputAction lookAction;
     cameraController cameraControl;
+    ballManager ballManager;
+
+    private bool isShuffle = false;
 
 
     void Start()
     {
         playerInputs = GetComponent<PlayerInput>();
         cameraControl = GetComponent<cameraController>();
+        ballManager = GetComponent<ballManager>();
 
         lookAction = playerInputs.actions["look"];
         interactAction = playerInputs.actions["interact"];
@@ -26,8 +30,6 @@ public class inputManager : MonoBehaviour
 
 
         lookAction.performed += GetInputs;
-        interactAction.performed += GetInputs;
-        panAction.performed += GetInputs;
 
     }
 
@@ -66,17 +68,48 @@ public class inputManager : MonoBehaviour
                 cameraControl.PanCamera(thisDirection);
             }
         }
-
-        if (context.action == interactAction) 
-        {
-            interact();
-        }
-        if (context.action == panAction) { }
     }
 
-    private void interact()
+    public void OnPan(InputValue value)
     {
+        float pressvalue = value.Get<float>();
 
+        if (!isShuffle)
+        {
+            cameraControl.throwPan(pressvalue);
+        }
+        else 
+        {
+            cameraControl.throwShuffle(pressvalue);
+        }
+        
+    }
+
+    public void OnPanState(InputValue value)
+    {
+        float pressvalue = value.Get<float>();
+        switch (pressvalue) 
+        { 
+            case -1:
+                isShuffle = false; break;
+            case 1:
+                isShuffle = true; break;
+            default:
+                break;
+        }
+    }
+
+    public void OnInteract()
+    {
+        directions direction = cameraControl.getDirection();
+        switch (direction) 
+        {
+            case (directions.lane):
+                ballManager.throwBall();
+                break;
+            default: break;
+        
+        }
     }
 }
 

@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class boringBall : bowlingBallBase
 {
-    public boringBall(float points=50, float additiveMultiplier=1, float mulMultiplier=1) : base(points, additiveMultiplier, mulMultiplier)
+    public boringBall(float weight, float accuracy, float size, float bounce) : base(weight, accuracy, size, bounce)
     {
-        this.points += points;
-        this.additiveMultiplier += additiveMultiplier;
-        this.mulMultiplier += mulMultiplier;
+
     }
 
+    protected override void ballInitialise()
+    {
+    }
 }

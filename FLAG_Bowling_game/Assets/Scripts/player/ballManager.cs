@@ -8,6 +8,7 @@ public class ballManager: MonoBehaviour
     [SerializeField] Transform[] ballDisplayPositions;
 
     [SerializeField] GameObject BowlingBallPrefab;
+    [SerializeField] float throwPower = 1;
 
     private bowlingBallBase bowlingBall;
     private bool ballHeld = false;
@@ -18,6 +19,7 @@ public class ballManager: MonoBehaviour
     {
         upgradeUI.upgradePressed.AddListener(upgradeSelected);
         bowlingBall = Instantiate(BowlingBallPrefab, ballHoldLocation).GetComponent<bowlingBallBase>();
+        bowlingBall.enabled = true;
         startHoldingBall();
 
     }
@@ -28,6 +30,15 @@ public class ballManager: MonoBehaviour
         if (ballHeld)
         {
             bowlingBall.setLocation(ballHoldLocation.position, ballHoldLocation.rotation);
+        }
+    }
+    public void throwBall()
+    {
+        if (ballHeld)
+        {
+            Debug.Log("throwing");
+            bowlingBall.throwBall(throwPower);
+            ballHeld = false;
         }
     }
 
@@ -41,4 +52,6 @@ public class ballManager: MonoBehaviour
         bowlingBall.setHeld(true);
         ballHeld = true;
     }
+
+    
 }
