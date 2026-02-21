@@ -5,21 +5,26 @@ using UnityEngine;
 public class BowlingPinBase : MonoBehaviour
 {
     //base class shouldn't need any changes going forward except base stats (follows strategy patern)
-    public float points = 50;
-    public float additiveMultiplier = 1.0f; //additive multiplier (1+1+1)
-    public float mulMultiplier = 1.0f;  //multiplicative multiplier (1*1*1)
+    public float points =  10;
+    public float GMultiplier = 1;
+    public float weight = 5;
     public IisSpecial abilityType;
+
+    private Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.mass = weight;
+    }
 
     public void TryDoAbility()
     {
-        abilityType?.DoAbility(points, additiveMultiplier, mulMultiplier);
+        abilityType?.DoAbility();
     }
 }
 
 public interface IisSpecial
 {
-    void DoAbility(float points, float additiveMultiplier, float mulMultiplier);
+    void DoAbility();
 }
-
-
-

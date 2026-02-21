@@ -1,9 +1,22 @@
 using UnityEngine;
 
-public class Explosion : IisSpecial
+public class Explosion : MonoBehaviour, IisSpecial
 {
-    public void DoAbility(float points, float additiveMultiplier, float mulMultiplier)
+    public float expForce = 800.0f, radius = 5.0f, upwardsModifier = 2.0f, timeDelay = 1.5f;
+
+    public void DoAbility()
     {
-        //code for explosion
+        Vector3 explosionPosition = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPosition, radius);
+
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+            if (rb != null)
+            {
+                rb.AddExplosionForce(expForce, explosionPosition, radius, upwardsModifier);
+            }
+        }
     }
 }
