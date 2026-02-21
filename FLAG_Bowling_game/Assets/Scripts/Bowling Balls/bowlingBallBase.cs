@@ -8,15 +8,17 @@ using UnityEngine;
 
 public abstract class bowlingBallBase : MonoBehaviour
 {
-    public float weight = 1;
-    public float accuracy = 1;
-    public float size = 1;
-    public float bounce = 1;
+    
 
-    protected float baseWeight;
-    protected float baseAccuracy;
-    protected float baseSize;
-    protected float baseBounce;
+    public float baseWeight = 1;
+    public float baseAccuracy = 1;
+    public float baseSize = 1;
+    public float baseBounce = 1;
+
+    protected float weight;
+    protected float accuracy;
+    protected float size;
+    protected float bounce;
 
     protected Rigidbody rb;
     protected PhysicsMaterial material;
@@ -29,6 +31,10 @@ public abstract class bowlingBallBase : MonoBehaviour
     
     private void Start()
     {
+        weight = baseWeight;
+        accuracy = baseAccuracy; 
+        size = baseSize;
+        bounce = baseBounce;
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
         SphereCollider col = GetComponent<SphereCollider>();
@@ -46,13 +52,34 @@ public abstract class bowlingBallBase : MonoBehaviour
         transform.rotation = rotation;
     }
 
+    public void addStat(string type, float value)
+    {
+        switch (type)
+        {
+            case "weight":
+                weight = baseWeight + value;
+                break;
+            case "accuracy":
+                accuracy = baseAccuracy + value;
+                break;
+            case "size":
+                size = baseSize + value;
+                break;
+            case "bounce":
+                bounce = baseBounce + value;
+                break;
+            default:
+                Debug.LogError("inproper stat "+ type+". Please use weight, accuracy, size or bounce");
+                break;
+        }
+    }
+
     public void addStats(float weight, float accuracy, float size, float bounce)
     {
-
-        weight = baseWeight + weight;
-        accuracy = baseAccuracy + accuracy;
-        size = baseSize + size;
-        bounce = baseBounce + bounce;
+        this.weight += weight;
+        this.accuracy += accuracy;
+        this.size += size;
+        this.bounce += bounce;
     }
 
     public void setHeld(bool held) 
