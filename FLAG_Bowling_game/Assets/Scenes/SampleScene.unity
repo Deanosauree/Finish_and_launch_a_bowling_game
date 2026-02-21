@@ -542,7 +542,6 @@ GameObject:
   - component: {fileID: 288889854}
   - component: {fileID: 288889857}
   - component: {fileID: 288889856}
-  - component: {fileID: 288889855}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -565,27 +564,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1953547978}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &288889855
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 288889853}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &288889856
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2008,7 +1986,7 @@ GameObject:
   - component: {fileID: 1298728425}
   - component: {fileID: 1298728424}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Rbarrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2277,6 +2255,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417433173}
   m_CullTransparentMesh: 1
+--- !u!1001 &1506948389
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1842100032875963766, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.18369287
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842100032875963766, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.69999975
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842100032875963766, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.681337
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842100032875963766, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842100032875963766, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842100032875963766, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842100032875963766, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842100032875963766, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842100032875963766, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842100032875963766, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825363092315837687, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
+      propertyPath: m_Name
+      value: Explosive Pin
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
 --- !u!1 &1527598684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2540,7 +2575,7 @@ GameObject:
   - component: {fileID: 1691634938}
   m_Layer: 0
   m_Name: Plane (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3028,7 +3063,7 @@ GameObject:
   - component: {fileID: 1829653216}
   - component: {fileID: 1829653215}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Lbarrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3281,3 +3316,4 @@ SceneRoots:
   - {fileID: 505604060}
   - {fileID: 1718067211}
   - {fileID: 1015334431}
+  - {fileID: 1506948389}

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class cameraController : MonoBehaviour
 {
@@ -71,8 +70,6 @@ public class cameraController : MonoBehaviour
     {
         if (currentDirection == directions.lane)
         {
-            Debug.Log("rotating by " + panStep * direction);
-
             currentShufflePan.y += panStep * direction;
             currentShufflePan.y = Mathf.Clamp(currentShufflePan.y, -panCap, panCap);
             thisCamera.transform.rotation = Quaternion.Euler(new Vector3(0, currentShufflePan.y, 0));
@@ -83,7 +80,6 @@ public class cameraController : MonoBehaviour
     {
         if (currentDirection == directions.lane)
         {
-            Debug.Log("shuffling by " + shuffleStep * direction);
             currentShufflePan.x += shuffleStep * direction;
             currentShufflePan.x = Mathf.Clamp(currentShufflePan.x, -shuffleCap, shuffleCap);
             thisCamera.transform.position = defaultLocation + new Vector3(currentShufflePan.x, 0, 0);
