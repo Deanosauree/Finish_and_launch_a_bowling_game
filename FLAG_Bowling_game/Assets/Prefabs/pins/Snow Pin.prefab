@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6938080500771133762}
   - component: {fileID: 4303972083186084370}
   - component: {fileID: 5619321860844526209}
-  - component: {fileID: 7522732230296672829}
+  - component: {fileID: 7364313275893041157}
   m_Layer: 0
-  m_Name: pin
+  m_Name: Snow Pin
   m_TagString: Pin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +143,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7522732230296672829
+--- !u!114 &7364313275893041157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,9 +152,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7047711554655907528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5042df17b908b84c83964f8a758f5cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 515b2c58a58ca814d82e1ba44837208e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BowlingPinBase
-  points: 10
+  m_EditorClassIdentifier: Assembly-CSharp::SnowPin
+  points: 15
   GMultiplier: 1
-  weight: 1
+  weight: 5
