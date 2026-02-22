@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 [RequireComponent(typeof(Rigidbody))] 
@@ -8,7 +9,7 @@ using UnityEngine;
 
 public abstract class bowlingBallBase : MonoBehaviour
 {
-    
+    public UnityEvent destroyBall;
 
     public float baseWeight = 1;
     public float baseAccuracy = 1;
@@ -80,6 +81,18 @@ public abstract class bowlingBallBase : MonoBehaviour
         this.accuracy += accuracy;
         this.size += size;
         this.bounce += bounce;
+    }
+
+    public void nTriggerEnter(Collider other)
+    {
+        if (other != null) 
+        { 
+            if (other.CompareTag("killBox"))
+            {
+
+            }
+        
+        }
     }
 
     public void setHeld(bool held) 

@@ -13,16 +13,19 @@ public class upgradeUIController : MonoBehaviour
     [SerializeField] GameObject panelObject;
 
     public UnityEvent<int> upgradePressed;
-    void Start()
+
+    private void Awake()
     {
-        buttonTextMeshes = new TextMeshProUGUI[3];
-        int thisButton = 0;
-        foreach (var button in buttons)
+        buttonTextMeshes = new TextMeshProUGUI[] { buttons[0].GetComponentInChildren<TextMeshProUGUI>(), buttons[1].GetComponentInChildren<TextMeshProUGUI>(), buttons[2].GetComponentInChildren<TextMeshProUGUI>() };
+        foreach (var button in buttons) 
         {
-            buttonTextMeshes[thisButton] = button.GetComponentInChildren<TextMeshProUGUI>();
             buttonRelay relay = button.GetComponent<buttonRelay>();
             relay.buttonPressed.AddListener(IndexedButtonPress);
         }
+    }
+        
+    void Start()
+    {
     }
 
     // Update is called once per frame
@@ -46,7 +49,6 @@ public class upgradeUIController : MonoBehaviour
 
     public void IndexedButtonPress(int index)
     {
-        //upgradePressed.Invoke(index);
-        Debug.Log(index);
+        upgradePressed.Invoke(index);
     }
 }

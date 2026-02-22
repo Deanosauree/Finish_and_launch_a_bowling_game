@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pin
   - Ground
+  - killBox
   layers:
   - Default
   - TransparentFX

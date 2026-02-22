@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4f699c2f2f5d8468e6ebc941f24fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::boringBall
-  baseWeight: 1
+  baseWeight: 10
   baseAccuracy: 1
   baseSize: 1
   baseBounce: 1

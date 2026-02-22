@@ -33,11 +33,9 @@ public class inputManager : MonoBehaviour
 
     private void GetInputs(InputAction.CallbackContext context)
     {
-        Debug.Log(context.action);
         if (context.action == lookAction)
         {
             Vector2 direction = context.ReadValue<Vector2>();
-            Debug.Log(direction);
             enCameraPanDirections thisDirection = enCameraPanDirections.none;
             if (direction.x == 1)
             {
