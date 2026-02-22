@@ -40,7 +40,6 @@ public abstract class bowlingBallBase : MonoBehaviour
         rb.isKinematic = true;
         SphereCollider col = GetComponent<SphereCollider>();
         material = col.material;
-        transform.localScale = transform.localScale * size;
         material.bounciness = bounce;
         rb.mass *= weight;
         transform.localScale *= size;
@@ -59,12 +58,15 @@ public abstract class bowlingBallBase : MonoBehaviour
         {
             case "weight":
                 weight = baseWeight + value;
+                if (rb==null) rb = GetComponent<Rigidbody>();
+                rb.mass += value;
                 break;
             case "accuracy":
                 accuracy = baseAccuracy + value;
                 break;
             case "size":
                 size = baseSize + value;
+                transform.localScale += new Vector3(value, value, value);
                 break;
             case "bounce":
                 bounce = baseBounce + value;
@@ -77,19 +79,21 @@ public abstract class bowlingBallBase : MonoBehaviour
 
     public void addStats(float weight, float accuracy, float size, float bounce)
     {
+        if (rb == null) { rb = GetComponent<Rigidbody>(); }
+        if (material==null) { material = GetComponent<SphereCollider>().material; }
         this.weight += weight;
         this.accuracy += accuracy;
         this.size += size;
         this.bounce += bounce;
     }
 
-    public void nTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other != null) 
         { 
             if (other.CompareTag("killBox"))
             {
-
+                destroyBall.Invoke();
             }
         
         }

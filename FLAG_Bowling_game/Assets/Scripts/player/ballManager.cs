@@ -23,7 +23,7 @@ public class ballManager: MonoBehaviour
     void Start()
     {
         upgradeUI.upgradePressed.AddListener(upgradeSelected);
-        spawnUpgradedBalls("weight", "accuracy", "size", new int[] { 5, 2, 2 });
+        spawnUpgradedBalls("weight", "accuracy", "size", new float[] { 5, 2, 0.5f });
 
     }
 
@@ -81,7 +81,7 @@ public class ballManager: MonoBehaviour
         }
     }
 
-    public void spawnUpgradedBalls(string firstUpgrade, string secondUpgrade, string thirdUpgrade, int[] values)
+    public void spawnUpgradedBalls(string firstUpgrade, string secondUpgrade, string thirdUpgrade, float[] values)
     {
         bowlingBallBase firstBall = Instantiate(BowlingBallPrefab, ballDisplayPositions[0]).GetComponent<bowlingBallBase>();
         bowlingBallBase secondBall = Instantiate(BowlingBallPrefab, ballDisplayPositions[1]).GetComponent<bowlingBallBase>();
