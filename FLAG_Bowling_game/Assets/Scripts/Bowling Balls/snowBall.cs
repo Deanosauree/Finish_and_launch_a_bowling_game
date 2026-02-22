@@ -23,7 +23,7 @@ public class snowBall : bowlingBallBase
         if (collided.CompareTag("Pin"))
         {
             BowlingPinBase pin = collided.GetComponent<BowlingPinBase>();
-            if (collided.name == "Snow Pin" || collided.name == "Explosive Pin")
+            if (collided.name == "Snow Pin")
             {
                 Debug.Log($"Growing due to {collided.name}");
                 Destroy(collided);
