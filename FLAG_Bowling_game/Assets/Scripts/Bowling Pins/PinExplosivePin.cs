@@ -3,14 +3,11 @@ using UnityEngine;
 
 public class PinExplosivePin : BowlingPinBase
 {
-
     public GameObject exp;
-
+    private bool canExplode = true;
 
     public PinExplosivePin()//constractor
     {
-        //explosion on contact with other pins or with the ball
-        //both can happen if we want more pin variations
         weight = 30;
     }
 
@@ -20,10 +17,11 @@ public class PinExplosivePin : BowlingPinBase
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Pin") || other.CompareTag("Ground"))
+        if((other.CompareTag("Pin") || other.CompareTag("Ground")) && canExplode == true)
         {
             TryDoAbility();
             GameObject explosion = Instantiate(exp, transform.position, quaternion.identity);
+            canExplode = false;
             Destroy(explosion, 2);
         }
     }
