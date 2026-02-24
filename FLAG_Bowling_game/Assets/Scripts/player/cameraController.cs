@@ -13,6 +13,7 @@ public class cameraController : MonoBehaviour
     private Vector3 screenLocation = new Vector3(-35, 0, 0);
     private Vector3 ballsLocationne = new Vector3(0, -90, 0);
     private Vector3 laneLocation =new Vector3(0,0,0);
+    private float[] zooms = {30,40,60 };
     private Vector3 defaultLocation;
 
     private Vector2 currentShufflePan = new Vector2(0,0);
@@ -42,17 +43,20 @@ public class cameraController : MonoBehaviour
                 {
                     thisCamera.transform.rotation = Quaternion.Euler(screenLocation);
                 }
+                thisCamera.fieldOfView = zooms[0];
                 currentDirection = directions.screen;
                 pointingLine.SetActive(false);
                 break;
             case enCameraPanDirections.down:
                 thisCamera.transform.rotation = Quaternion.Euler(laneLocation + new Vector3(0,currentShufflePan.y, 0));
+                thisCamera.fieldOfView = zooms[2];
                 thisCamera.transform.position = defaultLocation + new Vector3(currentShufflePan.x,0,0);
                 currentDirection = directions.lane;
                 pointingLine.SetActive(true);
                 break;
             case enCameraPanDirections.left:
                 thisCamera.transform.rotation = Quaternion.Euler(ballsLocationne);
+                thisCamera.fieldOfView = zooms[1];
                 currentDirection = directions.balls;
                 thisCamera.transform.position = defaultLocation;
                 pointingLine.SetActive(false);
@@ -84,6 +88,16 @@ public class cameraController : MonoBehaviour
             currentShufflePan.x = Mathf.Clamp(currentShufflePan.x, -shuffleCap, shuffleCap);
             thisCamera.transform.position = defaultLocation + new Vector3(currentShufflePan.x, 0, 0);
         }
+    }
+
+    private void continousPan(float direction)
+    {
+
+    }
+
+    private void continousShuffle(float direction)
+    {
+
     }
 
     public directions getDirection()

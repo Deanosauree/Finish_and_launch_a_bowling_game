@@ -29,20 +29,25 @@ public abstract class bowlingBallBase : MonoBehaviour
     }
 
     protected abstract void ballInitialise();
-    
-    private void Start()
+
+    private void Awake()
     {
         weight = baseWeight;
-        accuracy = baseAccuracy; 
+        accuracy = baseAccuracy;
         size = baseSize;
         bounce = baseBounce;
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
         SphereCollider col = GetComponent<SphereCollider>();
         material = col.material;
-        material.bounciness = bounce;
+        material.bounciness = Mathf.Clamp(bounce,0,1);
         rb.mass *= weight;
         transform.localScale *= size;
+    }
+
+    private void Start()
+    {
+        
         ballInitialise();
     }
     public void setLocation(Vector3 location, Quaternion rotation)
@@ -57,19 +62,19 @@ public abstract class bowlingBallBase : MonoBehaviour
         switch (type)
         {
             case "weight":
-                weight = baseWeight + value;
+                weight = weight + value;
                 if (rb==null) rb = GetComponent<Rigidbody>();
                 rb.mass += value;
                 break;
             case "accuracy":
-                accuracy = baseAccuracy + value;
+                accuracy = accuracy + (accuracy *0.01f* value);
                 break;
             case "size":
-                size = baseSize + value;
+                size = size + value;
                 transform.localScale += new Vector3(value, value, value);
                 break;
             case "bounce":
-                bounce = baseBounce + value;
+                bounce = bounce + value;
                 break;
             default:
                 Debug.LogError("inproper stat "+ type+". Please use weight, accuracy, size or bounce");
@@ -99,6 +104,36 @@ public abstract class bowlingBallBase : MonoBehaviour
         }
     }
 
+    public void OnCollisionEnter(Collision collision)
+    {
+        GameObject hit = collision.gameObject;
+        switch (hit.tag)
+        {
+            case "Pin":
+                Debug.Log("hitPinPush");
+                Vector3 forcePosition = new Vector3(hit.transform.position.x, transform.position.y, hit.transform.position.z);
+                Vector3 force = (forcePosition - transform.position).normalized * bounce * weight;
+                Debug.Log(force);
+                hit.GetComponent<Rigidbody>().AddForceAtPosition(force, forcePosition);
+                break;
+            case "Barrier":
+                wallBounce();
+                break;
+        }
+        OnSpecialCollisionEnter(collision);
+    }
+
+    private void wallBounce()
+    {
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x*-1*(1+bounce/100), rb.linearVelocity.y, rb.linearVelocity.z);
+    }
+
+
+    protected virtual void OnSpecialCollisionEnter(Collision Collision)
+    {
+
+    }
+
     public void setHeld(bool held) 
     { 
         GetComponent<Rigidbody>().isKinematic = held;
@@ -108,6 +143,10 @@ public abstract class bowlingBallBase : MonoBehaviour
     {
         GetComponent<Rigidbody>().isKinematic = false;
         rb.AddForce(transform.forward * 100 * power);
+        float variance = Random.Range(-10, 11);
+        Debug.Log("variance: " + variance);
+        Debug.Log("Variance/accuracy: " + variance/accuracy);
+        rb.AddForce(transform.right * (variance/accuracy) * 10);
 
     }
 }

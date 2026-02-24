@@ -52,7 +52,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   baseWeight: 20
-  baseAccuracy: 1
+  baseAccuracy: 0.3
   baseSize: 2
   baseBounce: 0.1
   growSpeed: 0.05

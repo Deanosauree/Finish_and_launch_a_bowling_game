@@ -17,7 +17,7 @@ public class snowBall : bowlingBallBase
         goalSize = size;
     }
 
-    public void OnCollisionEnter(Collision collision)
+    protected override void OnSpecialCollisionEnter(Collision collision)
     {
         GameObject collided = collision.gameObject;
         if (collided.CompareTag("Pin"))
