@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.Rendering.DebugUI;
 
 
 [RequireComponent(typeof(Rigidbody))] 
@@ -62,19 +63,19 @@ public abstract class bowlingBallBase : MonoBehaviour
         switch (type)
         {
             case "weight":
-                weight = weight + value;
+                weight = weight + (this.weight * 0.01f * value);
                 if (rb==null) rb = GetComponent<Rigidbody>();
-                rb.mass += value;
+                rb.mass = weight;
                 break;
             case "accuracy":
                 accuracy = accuracy + (accuracy *0.01f* value);
                 break;
             case "size":
-                size = size + value;
-                transform.localScale += new Vector3(value, value, value);
+                size = size + (this.size * 0.01f * value);
+                transform.localScale = new Vector3(size, size, size);
                 break;
             case "bounce":
-                bounce = bounce + value;
+                bounce = bounce + (this.bounce * 0.01f * value);
                 break;
             default:
                 Debug.LogError("inproper stat "+ type+". Please use weight, accuracy, size or bounce");
@@ -86,10 +87,10 @@ public abstract class bowlingBallBase : MonoBehaviour
     {
         if (rb == null) { rb = GetComponent<Rigidbody>(); }
         if (material==null) { material = GetComponent<SphereCollider>().material; }
-        this.weight += weight;
-        this.accuracy += accuracy;
-        this.size += size;
-        this.bounce += bounce;
+        this.weight += (this.weight * 0.01f * weight);
+        this.accuracy += (this.accuracy * 0.01f * accuracy);
+        this.size += (this.size * 0.01f * size);
+        this.bounce += (this.bounce * 0.01f * bounce);
     }
 
     public void OnTriggerEnter(Collider other)

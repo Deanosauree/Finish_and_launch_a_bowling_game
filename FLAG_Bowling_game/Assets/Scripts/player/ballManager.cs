@@ -23,7 +23,7 @@ public class ballManager: MonoBehaviour
     void Start()
     {
         upgradeUI.upgradePressed.AddListener(upgradeSelected);
-        spawnUpgradedBalls("weight", "accuracy", "size", new float[] { 5, 50, 0.5f });
+        spawnUpgradedBalls("weight", "accuracy", "size", new float[] { 50, 50, 50 });
 
     }
 
@@ -99,7 +99,7 @@ public class ballManager: MonoBehaviour
         secondBall.addStat(secondUpgrade, values[1]);
         thirdball.addStat(thirdUpgrade, values[2]);
 
-        upgradeUI.SetUpgradeNames($"{firstUpgrade} +{values[0]}", $"{secondUpgrade} +{values[1]}", $"{thirdUpgrade} +{values[2]}");
+        upgradeUI.SetUpgradeNames($"{firstUpgrade} +{values[0]}%", $"{secondUpgrade} +{values[1]}%", $"{thirdUpgrade} +{values[2]}%");
         upgradeUI.SetUpgradesVisible(true);
         ballChoices = new bowlingBallBase[] { firstBall, secondBall, thirdball };
     }

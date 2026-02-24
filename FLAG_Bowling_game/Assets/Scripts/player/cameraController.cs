@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class cameraController : MonoBehaviour
@@ -63,6 +64,7 @@ public class cameraController : MonoBehaviour
                 break;
             case enCameraPanDirections.right:
                 thisCamera.transform.rotation = Quaternion.Euler(laneLocation + new Vector3(0, currentShufflePan.y, 0));
+                thisCamera.fieldOfView = zooms[2];
                 thisCamera.transform.position = defaultLocation + new Vector3(currentShufflePan.x, 0, 0);
                 currentDirection = directions.lane;
                 pointingLine.SetActive(true);
@@ -77,7 +79,12 @@ public class cameraController : MonoBehaviour
             currentShufflePan.y += panStep * direction;
             currentShufflePan.y = Mathf.Clamp(currentShufflePan.y, -panCap, panCap);
             thisCamera.transform.rotation = Quaternion.Euler(new Vector3(0, currentShufflePan.y, 0));
+            if (direction != 0)
+            {
+                StartCoroutine(ContinousPan(direction));
+            }
         }
+        if (direction == 0) { StopAllCoroutines(); }
     }
 
     public void throwShuffle(float direction)
@@ -87,17 +94,36 @@ public class cameraController : MonoBehaviour
             currentShufflePan.x += shuffleStep * direction;
             currentShufflePan.x = Mathf.Clamp(currentShufflePan.x, -shuffleCap, shuffleCap);
             thisCamera.transform.position = defaultLocation + new Vector3(currentShufflePan.x, 0, 0);
+            if (direction != 0)
+            {
+                StartCoroutine(ContinousShuffle(direction));
+            }
+        }
+        if (direction == 0) { StopAllCoroutines(); }
+    }
+
+    private IEnumerator ContinousPan(float direction)
+    {
+        yield return new WaitForSeconds(0.5f);
+        while (true)
+        {
+            currentShufflePan.y += panStep * direction;
+            currentShufflePan.y = Mathf.Clamp(currentShufflePan.y, -panCap, panCap);
+            thisCamera.transform.rotation = Quaternion.Euler(new Vector3(0, currentShufflePan.y, 0));
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
-    private void continousPan(float direction)
+    private IEnumerator ContinousShuffle(float direction)
     {
-
-    }
-
-    private void continousShuffle(float direction)
-    {
-
+        yield return new WaitForSeconds(0.5f);
+        while (true) 
+        {
+            currentShufflePan.x += shuffleStep * direction;
+            currentShufflePan.x = Mathf.Clamp(currentShufflePan.x, -shuffleCap, shuffleCap);
+            thisCamera.transform.position = defaultLocation + new Vector3(currentShufflePan.x, 0, 0);
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 
     public directions getDirection()
