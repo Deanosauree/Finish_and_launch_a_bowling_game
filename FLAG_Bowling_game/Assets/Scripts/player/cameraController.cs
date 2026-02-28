@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class cameraController : MonoBehaviour
@@ -9,16 +10,22 @@ public class cameraController : MonoBehaviour
     [SerializeField] float shuffleStep;
     [SerializeField] float panCap;
     [SerializeField] float shuffleCap;
+    [SerializeField] float lookSpeed;
     Camera thisCamera;
 
     private Vector3 screenLocation = new Vector3(-35, 0, 0);
     private Vector3 ballsLocationne = new Vector3(0, -90, 0);
     private Vector3 laneLocation =new Vector3(0,0,0);
+    private Vector3 shopLocation = new Vector3(0, 90, 0);
     private float[] zooms = {30,40,60 };
     private Vector3 defaultLocation;
+    private Vector3 cameraEulers = new Vector3(0, 0, 0);
+
+    private bool moving = false;
+    private IEnumerator lookRoutine;
 
     private Vector2 currentShufflePan = new Vector2(0,0);
-    public enum directions { lane, balls, screen };
+    public enum directions { lane, balls, screen, shop};
     directions currentDirection = directions.lane;
 
 
@@ -36,38 +43,54 @@ public class cameraController : MonoBehaviour
             case enCameraPanDirections.none:
                 break;
             case enCameraPanDirections.up:
+                Vector3 rotationGoal;
                 if (currentDirection == directions.lane)
                 {
-                    thisCamera.transform.rotation = Quaternion.Euler(new Vector3(screenLocation.x, thisCamera.transform.rotation.y, 0));
+                    rotationGoal = new Vector3(screenLocation.x, thisCamera.transform.rotation.y, 0);
                 }
                 else
                 {
-                    thisCamera.transform.rotation = Quaternion.Euler(screenLocation);
+                    rotationGoal = screenLocation;
                 }
+                goTo(rotationGoal, thisCamera.transform.position);
                 thisCamera.fieldOfView = zooms[0];
                 currentDirection = directions.screen;
                 pointingLine.SetActive(false);
                 break;
             case enCameraPanDirections.down:
-                thisCamera.transform.rotation = Quaternion.Euler(laneLocation + new Vector3(0,currentShufflePan.y, 0));
+                goTo(laneLocation + new Vector3(0, currentShufflePan.y, 0), defaultLocation + new Vector3(currentShufflePan.x, 0, 0));
                 thisCamera.fieldOfView = zooms[2];
-                thisCamera.transform.position = defaultLocation + new Vector3(currentShufflePan.x,0,0);
                 currentDirection = directions.lane;
-                pointingLine.SetActive(true);
                 break;
             case enCameraPanDirections.left:
-                thisCamera.transform.rotation = Quaternion.Euler(ballsLocationne);
-                thisCamera.fieldOfView = zooms[1];
-                currentDirection = directions.balls;
-                thisCamera.transform.position = defaultLocation;
-                pointingLine.SetActive(false);
+                if (currentDirection == directions.shop)
+                {
+                    goTo(laneLocation + new Vector3(0, currentShufflePan.y, 0), defaultLocation + new Vector3(currentShufflePan.x, 0, 0));
+                    thisCamera.fieldOfView = zooms[2];
+                    currentDirection = directions.lane;
+                }
+                else
+                {
+                    goTo(ballsLocationne, defaultLocation);
+                    thisCamera.fieldOfView = zooms[1];
+                    currentDirection = directions.balls;
+                    pointingLine.SetActive(false);
+                }
                 break;
             case enCameraPanDirections.right:
-                thisCamera.transform.rotation = Quaternion.Euler(laneLocation + new Vector3(0, currentShufflePan.y, 0));
-                thisCamera.fieldOfView = zooms[2];
-                thisCamera.transform.position = defaultLocation + new Vector3(currentShufflePan.x, 0, 0);
-                currentDirection = directions.lane;
-                pointingLine.SetActive(true);
+                if (currentDirection == directions.balls)
+                {
+                    goTo(laneLocation + new Vector3(0, currentShufflePan.y, 0), defaultLocation + new Vector3(currentShufflePan.x, 0, 0));
+                    thisCamera.fieldOfView = zooms[2];
+                    currentDirection = directions.lane;
+                }
+                else
+                {
+                    thisCamera.fieldOfView = zooms[1];
+                    goTo(shopLocation, defaultLocation);
+                    currentDirection = directions.shop;
+                    pointingLine.SetActive(false);
+                }
                 break;
         }
     }
@@ -100,6 +123,40 @@ public class cameraController : MonoBehaviour
             }
         }
         if (direction == 0) { StopAllCoroutines(); }
+    }
+
+    private void goTo(Vector3 rotTarget, Vector3 posTarget)
+    {
+        if (lookRoutine != null) { StopCoroutine(lookRoutine); }
+        lookRoutine = SmoothLook(rotTarget, posTarget);
+        StartCoroutine(lookRoutine);
+    }
+
+    private IEnumerator SmoothLook(Vector3 rotTarget, Vector3 posTarget)
+    {
+        Vector3 startingPosition = thisCamera.transform.position;
+        Vector3 startingRotation = cameraEulers;
+        moving = true;
+        int lookTime = (int)(10 / lookSpeed);
+        for (int i = 0; i < lookTime; i++) 
+        {
+            Vector3 currentPos = thisCamera.transform.position;
+            thisCamera.transform.position = new Vector3(currentPos.x + ((posTarget.x - startingPosition.x )/ lookTime), currentPos.y, currentPos.z + ((posTarget.z - startingPosition.z) / lookTime));
+            cameraEulers = new Vector3(cameraEulers.x+((rotTarget.x-startingRotation.x)/lookTime), cameraEulers.y + ((rotTarget.y - startingRotation.y) / lookTime), 0);
+            thisCamera.transform.rotation = Quaternion.Euler(cameraEulers);
+            /*if (Vector3.Distance(posTarget, thisCamera.transform.position) < 0.01 & Quaternion.Angle(thisCamera.transform.rotation, Quaternion.Euler(rotTarget)) < 0.1)
+            {
+                thisCamera.transform.position = posTarget;
+                cameraEulers = rotTarget;
+                thisCamera.transform.rotation = Quaternion.Euler(cameraEulers);
+                moving = false;
+            }*/
+            Debug.Log(lookTime);
+            Debug.Log((posTarget.z - startingPosition.z / lookTime));
+            Debug.Log(rotTarget.y - startingRotation.y / lookTime);
+            yield return new WaitForFixedUpdate();
+        }
+        if (currentDirection == directions.lane) { pointingLine.SetActive(true); }
     }
 
     private IEnumerator ContinousPan(float direction)
