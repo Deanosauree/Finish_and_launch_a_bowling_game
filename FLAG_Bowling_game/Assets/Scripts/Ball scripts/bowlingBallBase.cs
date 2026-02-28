@@ -126,7 +126,7 @@ public abstract class bowlingBallBase : MonoBehaviour
 
     private void wallBounce()
     {
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x*-1*(1+bounce/100), rb.linearVelocity.y, rb.linearVelocity.z);
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x*-1*(bounce/50), rb.linearVelocity.y, rb.linearVelocity.z);
     }
 
 

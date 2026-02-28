@@ -54,7 +54,7 @@ MonoBehaviour:
   baseWeight: 20
   baseAccuracy: 0.3
   baseSize: 2
-  baseBounce: 0.1
+  baseBounce: 15
   growSpeed: 0.05
   growPerPin: 1
 --- !u!54 &5974211072964865892

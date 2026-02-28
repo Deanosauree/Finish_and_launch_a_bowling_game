@@ -144,13 +144,7 @@ public class cameraController : MonoBehaviour
             thisCamera.transform.position = new Vector3(currentPos.x + ((posTarget.x - startingPosition.x )/ lookTime), currentPos.y, currentPos.z + ((posTarget.z - startingPosition.z) / lookTime));
             cameraEulers = new Vector3(cameraEulers.x+((rotTarget.x-startingRotation.x)/lookTime), cameraEulers.y + ((rotTarget.y - startingRotation.y) / lookTime), 0);
             thisCamera.transform.rotation = Quaternion.Euler(cameraEulers);
-            /*if (Vector3.Distance(posTarget, thisCamera.transform.position) < 0.01 & Quaternion.Angle(thisCamera.transform.rotation, Quaternion.Euler(rotTarget)) < 0.1)
-            {
-                thisCamera.transform.position = posTarget;
-                cameraEulers = rotTarget;
-                thisCamera.transform.rotation = Quaternion.Euler(cameraEulers);
-                moving = false;
-            }*/
+
             Debug.Log(lookTime);
             Debug.Log((posTarget.z - startingPosition.z / lookTime));
             Debug.Log(rotTarget.y - startingRotation.y / lookTime);

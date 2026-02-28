@@ -2781,6 +2781,7 @@ MonoBehaviour:
   shuffleStep: 0.1
   panCap: 20
   shuffleCap: 2
+  lookSpeed: 1
 --- !u!114 &1718067210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2859,7 +2860,7 @@ MonoBehaviour:
   - {fileID: 1173025026}
   - {fileID: 994997542}
   ballDisplay: {fileID: 0}
-  BowlingBallPrefab: {fileID: 5258841345652020079, guid: 97d87195531b56d4e9fb1c3a010abdb6, type: 3}
+  BowlingBallPrefab: {fileID: 5258841345652020079, guid: c9413d4b5f8286b4c8e3cc223887549b, type: 3}
   throwPower: 15
 --- !u!1 &1747418391
 GameObject:
