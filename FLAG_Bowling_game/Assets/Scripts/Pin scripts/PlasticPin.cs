@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlasticPin : BowlingPinBase
+public class PlasticPin : PinBase
 {
     public PlasticPin()//constractor
     {

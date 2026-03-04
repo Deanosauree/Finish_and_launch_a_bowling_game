@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SliverPin : BowlingPinBase
+public class SliverPin : PinBase
 {
     public SliverPin()//constractor
     {

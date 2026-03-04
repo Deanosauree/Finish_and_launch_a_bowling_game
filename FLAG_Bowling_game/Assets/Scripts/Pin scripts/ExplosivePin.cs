@@ -1,12 +1,12 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PinExplosivePin : BowlingPinBase
+public class ExplosivePin : PinBase
 {
     public GameObject exp;
     private bool canExplode = true;
 
-    public PinExplosivePin()//constractor
+    public ExplosivePin()//constractor
     {
         weight = 30;
     }
@@ -15,12 +15,14 @@ public class PinExplosivePin : BowlingPinBase
     {
         abilityType = gameObject.AddComponent<Explosion>();
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         if((other.CompareTag("Pin") || other.CompareTag("Ground")) && canExplode == true)
         {
             TryDoAbility();
             GameObject explosion = Instantiate(exp, transform.position, quaternion.identity);
+            PointCalc.PinDropped(points, GMultiplier);
             canExplode = false;
             Destroy(explosion, 2);
         }
