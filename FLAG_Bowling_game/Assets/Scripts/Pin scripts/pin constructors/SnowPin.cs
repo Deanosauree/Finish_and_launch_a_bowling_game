@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SnowPin : BowlingPinBase
+public class SnowPin : PinBase
 {
     public SnowPin()//constractor
     {

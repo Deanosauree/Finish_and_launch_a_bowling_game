@@ -213,13 +213,13 @@ MonoBehaviour:
   PinParent: {fileID: 904834365}
   pins:
   - prefab: {fileID: 7047711554655907528, guid: a1ccad353bbc2ec4d87bdd376937a341, type: 3}
-    chance: 80
+    chance: 0
     _weight: 0
   - prefab: {fileID: 7047711554655907528, guid: 8a19f9419cd8d04468783ba923d0d2d9, type: 3}
-    chance: 40
+    chance: 0
     _weight: 0
   - prefab: {fileID: 7047711554655907528, guid: 7a8da6f95b99ac240a78f967cde865cb, type: 3}
-    chance: 40
+    chance: 0
     _weight: 0
   - prefab: {fileID: 6825363092315837687, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
     chance: 100
