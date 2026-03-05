@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 public class ballManager: MonoBehaviour
 {
@@ -16,7 +18,7 @@ public class ballManager: MonoBehaviour
     private bool ballHeld = false;
     private bowlingBallBase[] ballChoices;
 
-    private Dictionary<string, float> bowlingBallData = new Dictionary<string, float> { { "weight", 0 }, { "accuracy", 0 }, { "size", 0 },  { "bounce", 0 } };
+    private Dictionary<string, float> bowlingBallData = new Dictionary<string, float> { { "weight", 0 }, { "accuracy", 0 }, { "size", 0 }, { "bounce", 0 }, { "speed", 0 } };
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -98,6 +100,10 @@ public class ballManager: MonoBehaviour
         firstBall.addStat(firstUpgrade, values[0]);
         secondBall.addStat(secondUpgrade, values[1]);
         thirdball.addStat(thirdUpgrade, values[2]);
+
+        //LocalizedString firstLocalised = new LocalizedString();
+        //LocalizedString secondLocalised;
+       // LocalizedString thirdLocalised;
 
         upgradeUI.SetUpgradeNames($"{firstUpgrade} +{values[0]}%", $"{secondUpgrade} +{values[1]}%", $"{thirdUpgrade} +{values[2]}%");
         upgradeUI.SetUpgradesVisible(true);
