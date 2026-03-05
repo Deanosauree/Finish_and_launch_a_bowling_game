@@ -31,6 +31,26 @@ MonoBehaviour:
     m_Key: pause
     m_Metadata:
       m_Items: []
+  - m_Id: 1435883109605376
+    m_Key: weight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1436113787936768
+    m_Key: accuracy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1436167466639360
+    m_Key: size
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1436184600371200
+    m_Key: bounce
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1436200547115008
+    m_Key: speed
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

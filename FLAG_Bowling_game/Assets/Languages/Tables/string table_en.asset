@@ -34,6 +34,26 @@ MonoBehaviour:
     m_Localized: PAUSED
     m_Metadata:
       m_Items: []
+  - m_Id: 1435883109605376
+    m_Localized: Weight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1436113787936768
+    m_Localized: Accuracy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1436167466639360
+    m_Localized: Size
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1436184600371200
+    m_Localized: Bounciness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1436200547115008
+    m_Localized: Speed
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
