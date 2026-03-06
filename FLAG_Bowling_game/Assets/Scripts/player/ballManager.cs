@@ -101,11 +101,11 @@ public class ballManager: MonoBehaviour
         secondBall.addStat(secondUpgrade, values[1]);
         thirdball.addStat(thirdUpgrade, values[2]);
 
-        //LocalizedString firstLocalised = new LocalizedString();
-        //LocalizedString secondLocalised;
-       // LocalizedString thirdLocalised;
+         LocalizedString firstLocalised = new LocalizedString("string table", firstUpgrade);
+         LocalizedString secondLocalised = new LocalizedString("string table", secondUpgrade);
+         LocalizedString thirdLocalised = new LocalizedString("string table", thirdUpgrade);
 
-        upgradeUI.SetUpgradeNames($"{firstUpgrade} +{values[0]}%", $"{secondUpgrade} +{values[1]}%", $"{thirdUpgrade} +{values[2]}%");
+        upgradeUI.SetUpgradeNames($"{firstLocalised.GetLocalizedString()} +{values[0]}%", $"{secondLocalised.GetLocalizedString()} +{values[1]}%", $"{thirdLocalised.GetLocalizedString()} +{values[2]}%");
         upgradeUI.SetUpgradesVisible(true);
         ballChoices = new bowlingBallBase[] { firstBall, secondBall, thirdball };
     }
