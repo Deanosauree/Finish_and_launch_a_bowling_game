@@ -90,6 +90,7 @@ public class pinStoreManager : MonoBehaviour
 
     public void cardHovered(int index)
     {
+        Debug.Log(index);
         int correctedIndex = chosenPins[index];
         PinCostAttributes pin = pinAttributes[correctedIndex];
         LocalizedString pinName = pin.pinName;
