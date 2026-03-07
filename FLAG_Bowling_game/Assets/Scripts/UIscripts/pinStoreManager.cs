@@ -71,6 +71,7 @@ public class pinStoreManager : MonoBehaviour
                 currentPin += 1;
             }
             chosenPins[i] = currentPin;
+            Debug.Log(currentPin + " current Pin vs length " + chances.Count);
             totalProbability -= chances[currentPin];
             chances[currentPin] = 0;
         }

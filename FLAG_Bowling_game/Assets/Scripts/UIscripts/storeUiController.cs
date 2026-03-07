@@ -25,12 +25,15 @@ public class storeUiController : MonoBehaviour
         { buttons[0].GetComponentInChildren<TextMeshProUGUI>(), buttons[1].GetComponentInChildren<TextMeshProUGUI>(), 
             buttons[2].GetComponentInChildren<TextMeshProUGUI>(), buttons[3].GetComponentInChildren<TextMeshProUGUI>(), 
             buttons[4].GetComponentInChildren<TextMeshProUGUI>() };
+        buttonCount = 0;
         foreach (var button in buttons) 
         {
             buttonRelay relay = button.GetComponent<buttonRelay>();
             relay.buttonPressed.AddListener(IndexedButtonPress);
             buttonCount += 1;
+            Debug.Log("Button count is " + buttonCount);
         }
+        
         SetUpgradesVisible(false);
     }
         
@@ -54,6 +57,7 @@ public class storeUiController : MonoBehaviour
     {
         for (int i = 0; i < pins.Length; i++) 
         {
+            Debug.Log("Setting UI");
             PinCostAttributes pin = pins[i];
             float cost = pin.pinPrice * Mathf.Pow(pin.pinPriceMultiplier, pin.timesPurchased);
             buttonTextMeshes[i].text = cost.ToString();
