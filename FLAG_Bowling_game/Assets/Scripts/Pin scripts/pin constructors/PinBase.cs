@@ -31,7 +31,6 @@ public class PinBase : MonoBehaviour
         {
             PointCalc.PinDropped(points, GMultiplier);
             counted = true;
-            Destroy(this, 1);
         }
     }
 }

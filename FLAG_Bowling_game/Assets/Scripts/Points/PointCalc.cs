@@ -2,9 +2,9 @@ using UnityEngine;
 
 public static class PointCalc
 {
-    public static int pinsDropped = 0;
-    public static float totalPoints = 0;
-    public static float multyplier = 1.0f;
+    private static int pinsDropped = 0;
+    private static float totalPoints = 0;
+    private static float multyplier = 1.0f;
 
 
 
@@ -12,11 +12,26 @@ public static class PointCalc
     public static void PinDropped(float points, float mult)
     {
         pinsDropped += 1;
-        totalPoints += points;
-        multyplier *= mult;
+        totalPoints = totalPoints + points;
+        multyplier = multyplier * mult;
 
-        Debug.Log("pin: " + pinsDropped);
-        Debug.Log("points: " + totalPoints);
-        Debug.Log("multiplier: " + multyplier);
+
+        SetPointLabel(totalPoints);
+        SetMulLabel(multyplier);
     }
+
+
+    public static void SetPointLabel(double value)
+    {
+        string labelValue = FormatNumbers.Format(value);
+
+        Debug.Log("points: " + labelValue);
+    }
+
+    public static void SetMulLabel(double value)
+    {
+        string labelValue = FormatNumbers.Format(value);
+        Debug.Log("multyplier: " + labelValue);
+    }
+
 }
