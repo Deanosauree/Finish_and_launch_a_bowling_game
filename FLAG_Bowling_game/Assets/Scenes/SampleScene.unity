@@ -2750,7 +2750,7 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -2861,7 +2861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa113cf8ce0c184e8b0bae37fa6461a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::buttonRelay
-  buttonIndex: 2
+  buttonIndex: 0
   buttonPressed:
     m_PersistentCalls:
       m_Calls: []
@@ -6118,7 +6118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa113cf8ce0c184e8b0bae37fa6461a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::buttonRelay
-  buttonIndex: 2
+  buttonIndex: 3
   buttonPressed:
     m_PersistentCalls:
       m_Calls: []
@@ -6146,7 +6146,7 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
+            m_IntArgument: 3
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -7198,7 +7198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa113cf8ce0c184e8b0bae37fa6461a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::buttonRelay
-  buttonIndex: 0
+  buttonIndex: 1
   buttonPressed:
     m_PersistentCalls:
       m_Calls: []
@@ -7226,7 +7226,7 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -8872,7 +8872,7 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
+            m_IntArgument: 4
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -8983,7 +8983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa113cf8ce0c184e8b0bae37fa6461a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::buttonRelay
-  buttonIndex: 2
+  buttonIndex: 4
   buttonPressed:
     m_PersistentCalls:
       m_Calls: []
@@ -9980,7 +9980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa113cf8ce0c184e8b0bae37fa6461a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::buttonRelay
-  buttonIndex: 1
+  buttonIndex: 2
   buttonPressed:
     m_PersistentCalls:
       m_Calls: []
@@ -10008,7 +10008,7 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
+            m_IntArgument: 2
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0

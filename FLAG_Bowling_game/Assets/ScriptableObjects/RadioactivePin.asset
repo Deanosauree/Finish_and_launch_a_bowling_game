@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PinCostAttributes
   pinName:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:541133946b181044c89437b18085779f
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 2187803106136064
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   description:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:541133946b181044c89437b18085779f
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 2187842708754432
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

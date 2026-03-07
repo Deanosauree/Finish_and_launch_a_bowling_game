@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PinCostAttributes
   pinName:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:541133946b181044c89437b18085779f
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 2188343819030528
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   description:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:541133946b181044c89437b18085779f
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 2188369823715328
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -36,6 +36,7 @@ MonoBehaviour:
   amountPurchasable: 0
   pinProbabilityIncrease: 0
   pinPriceMultiplier: 0
+  timesPurchased: 0
   references:
     version: 2
     RefIds: []
