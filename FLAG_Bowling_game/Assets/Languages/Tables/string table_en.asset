@@ -54,6 +54,18 @@ MonoBehaviour:
     m_Localized: Speed
     m_Metadata:
       m_Items: []
+  - m_Id: 2159297218732032
+    m_Localized: FULLSCREEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2159530854047744
+    m_Localized: VOLUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2163151582781440
+    m_Localized: GRAPHICS
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
