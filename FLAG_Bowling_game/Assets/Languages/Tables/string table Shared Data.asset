@@ -51,6 +51,20 @@ MonoBehaviour:
     m_Key: speed
     m_Metadata:
       m_Items: []
+  - m_Id: 2159297218732032
+    m_Key: fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2159530854047744
+    m_Key: volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2163151582781440
+    m_Key: 'graphics
+
+'
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
