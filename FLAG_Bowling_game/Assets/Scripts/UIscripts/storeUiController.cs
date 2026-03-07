@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class storeUiController : MonoBehaviour
 {
@@ -12,20 +13,25 @@ public class storeUiController : MonoBehaviour
     GameObject[] buttons;
     TextMeshProUGUI[] buttonTextMeshes;
     [SerializeField] GameObject panelObject;
+    [SerializeField] TextMeshProUGUI[] descriptionPanel;
 
     public UnityEvent<int> upgradePressed;
     public UnityEvent<int> upgradeHovered;
-    public int buttonCount = 0;
+    [HideInInspector] public int buttonCount = 0;
 
     private void Awake()
     {
-        buttonTextMeshes = new TextMeshProUGUI[] { buttons[0].GetComponentInChildren<TextMeshProUGUI>(), buttons[1].GetComponentInChildren<TextMeshProUGUI>(), buttons[2].GetComponentInChildren<TextMeshProUGUI>() };
+        buttonTextMeshes = new TextMeshProUGUI[] 
+        { buttons[0].GetComponentInChildren<TextMeshProUGUI>(), buttons[1].GetComponentInChildren<TextMeshProUGUI>(), 
+            buttons[2].GetComponentInChildren<TextMeshProUGUI>(), buttons[3].GetComponentInChildren<TextMeshProUGUI>(), 
+            buttons[4].GetComponentInChildren<TextMeshProUGUI>() };
         foreach (var button in buttons) 
         {
             buttonRelay relay = button.GetComponent<buttonRelay>();
             relay.buttonPressed.AddListener(IndexedButtonPress);
             buttonCount += 1;
         }
+        SetUpgradesVisible(false);
     }
         
     void Start()
@@ -41,14 +47,35 @@ public class storeUiController : MonoBehaviour
     public void SetUpgradesVisible(bool visible)
     {
         panelObject.SetActive(visible);
+        foreach (var button in buttons) { button.SetActive(visible); }
     }
 
-    public void SetUpgradeNames(string upgradeOne, string upgradeTwo, string upgradeThree)
+    public void SetUpgrades(PinCostAttributes[] pins)
     {
-        buttonTextMeshes[0].SetText(upgradeOne);
-        buttonTextMeshes[1].SetText(upgradeTwo);
-        buttonTextMeshes[2].SetText(upgradeThree);
+        for (int i = 0; i < pins.Length; i++) 
+        {
+            PinCostAttributes pin = pins[i];
+            float cost = pin.pinPrice * Mathf.Pow(pin.pinPriceMultiplier, pin.timesPurchased);
+            buttonTextMeshes[i].text = cost.ToString();
+            buttons[i].GetComponent<Image>().sprite = pin.card;
+        }
 
+    }
+
+    public void updateUpgrade(PinCostAttributes pin, int index)
+    {
+        float cost = pin.pinPrice * Mathf.Pow(pin.pinPriceMultiplier, pin.timesPurchased);
+        buttonTextMeshes[index].text = cost.ToString();
+    }
+    private void hideUpgrade(int index)
+    {
+        buttons[index].SetActive(false);
+    }
+
+    public void updateDesrciption(string name, string description)
+    {
+        descriptionPanel[0].text = name;
+        descriptionPanel[1].text = description;
     }
 
     public void indexedButtonHover(int index)

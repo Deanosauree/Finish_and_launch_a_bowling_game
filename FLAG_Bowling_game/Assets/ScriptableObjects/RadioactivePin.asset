@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ed4f94c9127da9479b6017956b9d7d2, type: 3}
-  m_Name: SnowPin
+  m_Name: RadioactivePin
   m_EditorClassIdentifier: Assembly-CSharp::PinCostAttributes
   pinName:
     m_TableReference:
@@ -31,11 +31,11 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   card: {fileID: 21300000, guid: 0c7d83bf7d730ec40bad2bf489eb0284, type: 3}
-  pinPrice: 300
-  pinChance: 15
-  amountPurchasable: 0
-  pinProbabilityIncrease: 0
-  pinPriceMultiplier: 0
+  pinPrice: 1000
+  pinChance: 10
+  amountPurchasable: 1
+  pinProbabilityIncrease: 1
+  pinPriceMultiplier: 2
   timesPurchased: 0
   references:
     version: 2

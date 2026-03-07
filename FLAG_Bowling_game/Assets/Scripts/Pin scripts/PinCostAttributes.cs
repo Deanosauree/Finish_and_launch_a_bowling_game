@@ -12,4 +12,5 @@ public class PinCostAttributes : ScriptableObject
     public int amountPurchasable =  1;
     public float pinProbabilityIncrease = 1;
     public float pinPriceMultiplier = 1;
+    [HideInInspector] public int timesPurchased=0;
 }
