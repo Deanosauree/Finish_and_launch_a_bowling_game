@@ -22,6 +22,11 @@ public class PinSpawner : MonoBehaviour
 
     private void Start()
     {
+        SpawnAllPins();
+    }
+
+    public void SpawnAllPins()
+    {
         allPinPos = new Transform[PinParent.transform.childCount];
 
         for (int i = 0; i < allPinPos.Length; i++)
