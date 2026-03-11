@@ -16,7 +16,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:541133946b181044c89437b18085779f
     m_TableEntryReference:
-      m_KeyId: 2187869833318400
+      m_KeyId: 3592356519137280
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:541133946b181044c89437b18085779f
     m_TableEntryReference:
-      m_KeyId: 2187897486364672
+      m_KeyId: 3592620110172160
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

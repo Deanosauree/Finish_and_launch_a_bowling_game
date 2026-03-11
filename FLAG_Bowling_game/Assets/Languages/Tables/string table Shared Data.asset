@@ -65,6 +65,86 @@ MonoBehaviour:
 '
     m_Metadata:
       m_Items: []
+  - m_Id: 3592075123281920
+    m_Key: goldPin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592194342178816
+    m_Key: volatilePin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592307483529216
+    m_Key: icePin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592328694124544
+    m_Key: plasticPin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592356519137280
+    m_Key: silverPin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592383182327808
+    m_Key: snowPin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592400655798272
+    m_Key: tournamentPin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592423753830400
+    m_Key: tungstenPin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592457660583936
+    m_Key: tungstenPinDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592535162933248
+    m_Key: tournamentPinDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592571007455232
+    m_Key: snowPinDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592620110172160
+    m_Key: silverPinDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592653962399744
+    m_Key: plasticPinDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592679656706048
+    m_Key: icePinDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592709310435328
+    m_Key: goldenPinDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592733134082048
+    m_Key: volatilePinDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3593258579709952
+    m_Key: radioactivePin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3593288132775936
+    m_Key: radioactivePinDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3593317748756480
+    m_Key: basicPin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3593343896047616
+    m_Key: basicPinDesc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
