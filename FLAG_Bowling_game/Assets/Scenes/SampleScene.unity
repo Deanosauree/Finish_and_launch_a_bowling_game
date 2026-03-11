@@ -1396,7 +1396,7 @@ MonoBehaviour:
   PinParent: {fileID: 795541084}
   pins:
   - prefab: {fileID: 7047711554655907528, guid: a1ccad353bbc2ec4d87bdd376937a341, type: 3}
-    chance: 0
+    chance: 100
     _weight: 0
   - prefab: {fileID: 7047711554655907528, guid: 8a19f9419cd8d04468783ba923d0d2d9, type: 3}
     chance: 0
@@ -1411,7 +1411,7 @@ MonoBehaviour:
     chance: 0
     _weight: 0
   - prefab: {fileID: 7047711554655907528, guid: 51c0661095a370b44be9ee8b0dc05b7d, type: 3}
-    chance: 100
+    chance: 0
     _weight: 0
   - prefab: {fileID: 7047711554655907528, guid: 3bd840e351587794496c84d1526b5115, type: 3}
     chance: 0
@@ -10383,6 +10383,7 @@ GameObject:
   - component: {fileID: 1718067209}
   - component: {fileID: 1718067212}
   - component: {fileID: 1718067213}
+  - component: {fileID: 1718067214}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -10488,6 +10489,22 @@ MonoBehaviour:
   ballDisplay: {fileID: 0}
   BowlingBallPrefab: {fileID: 5258841345652020079, guid: 5c5570376d8f778459541a772276e95d, type: 3}
   throwPower: 15
+--- !u!114 &1718067214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718067208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e58a94ceb645d6842b3360aaf0f051bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BowlingManager
+  rounds: 10
+  ballManager: {fileID: 0}
+  pinStoreManager: {fileID: 0}
+  pinSpawner: {fileID: 0}
 --- !u!1 &1718836562
 GameObject:
   m_ObjectHideFlags: 0

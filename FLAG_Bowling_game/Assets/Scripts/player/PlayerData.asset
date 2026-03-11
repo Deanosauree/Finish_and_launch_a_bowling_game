@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69be20ca6424d5841b8f05acf28955ed, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  currentScore: 0
+  pinChanceArray:
+  - pinName: volatilePin
+    chance: 0
+  - pinName: goldPin
+    chance: 0
+  - pinName: icePin
+    chance: 0
+  - pinName: plasticPin
+    chance: 0
+  - pinName: silverPin
+    chance: 0
+  - pinName: snowPin
+    chance: 0
+  - pinName: tournamentPin
+    chance: 0
+  - pinName: tungstenPin
+    chance: 0
+  - pinName: basicPin
+    chance: 0
