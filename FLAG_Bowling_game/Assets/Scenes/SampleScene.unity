@@ -10502,7 +10502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BowlingManager
   rounds: 10
-  ballManager: {fileID: 0}
+  ballManager: {fileID: 1718067213}
   pinStoreManager: {fileID: 0}
   pinSpawner: {fileID: 0}
 --- !u!1 &1718836562

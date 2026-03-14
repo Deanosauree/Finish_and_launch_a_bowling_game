@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -22,12 +23,16 @@ public class ballManager: MonoBehaviour
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void initialise()
+    {
+        spawnBalls();
+    }
+
+    void Awake()
     {
         upgradeUI.upgradePressed.AddListener(upgradeSelected);
-        spawnUpgradedBalls("weight", "accuracy", "size", new float[] { 50, 50, 50 });
-
     }
+
 
     // Update is called once per frame
     void Update()
@@ -36,6 +41,12 @@ public class ballManager: MonoBehaviour
         {
             bowlingBall.setLocation(ballHoldLocation.position, ballHoldLocation.rotation);
         }
+    }
+
+    public void spawnBalls()
+    {
+        string[] upgrades = getRandomUpgrades();
+        spawnUpgradedBalls(upgrades[0], upgrades[1], upgrades[2], new float[] { 50, 50, 50 });
     }
 
     public void setBallType(GameObject prefab)
@@ -58,6 +69,8 @@ public class ballManager: MonoBehaviour
         Destroy(bowlingBall.gameObject);
         bowlingBall = null;
     }
+
+
 
     public void upgradeSelected(int index)
     {
@@ -83,7 +96,7 @@ public class ballManager: MonoBehaviour
         }
     }
 
-    public void spawnUpgradedBalls(string firstUpgrade, string secondUpgrade, string thirdUpgrade, float[] values)
+    private void spawnUpgradedBalls(string firstUpgrade, string secondUpgrade, string thirdUpgrade, float[] values)
     {
         bowlingBallBase firstBall = Instantiate(BowlingBallPrefab, ballDisplayPositions[0]).GetComponent<bowlingBallBase>();
         bowlingBallBase secondBall = Instantiate(BowlingBallPrefab, ballDisplayPositions[1]).GetComponent<bowlingBallBase>();
@@ -93,9 +106,9 @@ public class ballManager: MonoBehaviour
         secondBall.setLocation(ballDisplayPositions[1].position, ballDisplayPositions[1].rotation);
         thirdball.setLocation(ballDisplayPositions[2].position, ballDisplayPositions[2].rotation);
 
-        firstBall.addStats(bowlingBallData["weight"], bowlingBallData["accuracy"], bowlingBallData["size"], bowlingBallData["bounce"]);
-        secondBall.addStats(bowlingBallData["weight"], bowlingBallData["accuracy"], bowlingBallData["size"], bowlingBallData["bounce"]);
-        thirdball.addStats(bowlingBallData["weight"], bowlingBallData["accuracy"], bowlingBallData["size"], bowlingBallData["bounce"]);
+        firstBall.addStats(bowlingBallData["weight"], bowlingBallData["accuracy"], bowlingBallData["size"], bowlingBallData["bounce"], bowlingBallData["speed"]);
+        secondBall.addStats(bowlingBallData["weight"], bowlingBallData["accuracy"], bowlingBallData["size"], bowlingBallData["bounce"], bowlingBallData["speed"]);
+        thirdball.addStats(bowlingBallData["weight"], bowlingBallData["accuracy"], bowlingBallData["size"], bowlingBallData["bounce"], bowlingBallData["speed"]);
 
         firstBall.addStat(firstUpgrade, values[0]);
         secondBall.addStat(secondUpgrade, values[1]);
@@ -108,6 +121,28 @@ public class ballManager: MonoBehaviour
         upgradeUI.SetUpgradeNames($"{firstLocalised.GetLocalizedString()} +{values[0]}%", $"{secondLocalised.GetLocalizedString()} +{values[1]}%", $"{thirdLocalised.GetLocalizedString()} +{values[2]}%");
         upgradeUI.SetUpgradesVisible(true);
         ballChoices = new bowlingBallBase[] { firstBall, secondBall, thirdball };
+    }
+
+    private string[] getRandomUpgrades()
+    {
+        string[] choices = new string[] { "weight", "accuracy", "size", "bounce", "speed"};
+        string[] chosenBalls = new string[3];
+        
+        for (int i = 0; i < chosenBalls.Length; i++) 
+        {
+            bool picking = true;
+            while (picking)
+            {
+                int upgradeChoice = Random.Range(0, 5);
+                if (!(chosenBalls.Contains(choices[upgradeChoice])))
+                {
+                    picking = false;
+                    chosenBalls[i] = choices[upgradeChoice];
+                }
+            }
+        }
+        return chosenBalls;
+
     }
 
     void startHoldingBall()

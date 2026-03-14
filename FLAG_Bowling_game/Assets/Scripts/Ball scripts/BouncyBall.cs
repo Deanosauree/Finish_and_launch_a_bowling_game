@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BouncyBall : bowlingBallBase
 {
-    public BouncyBall(float weight, float accuracy, float size, float bounce) : base(weight, accuracy, size, bounce)
+    public BouncyBall(float weight, float accuracy, float size, float bounce, float speed) : base(weight, accuracy, size, bounce, speed)
     {
     }
 

@@ -16,17 +16,20 @@ public abstract class bowlingBallBase : MonoBehaviour
     public float baseAccuracy = 1;
     public float baseSize = 1;
     public float baseBounce = 1;
+    public float baseSpeed = 1;
 
     protected float weight;
     protected float accuracy;
     protected float size;
     protected float bounce;
+    protected float speed;
 
     protected Rigidbody rb;
     protected PhysicsMaterial material;
 
-    public bowlingBallBase(float weight, float accuracy, float size, float bounce)
+    public bowlingBallBase(float weight, float accuracy, float size, float bounce, float speed)
     {
+
     }
 
     protected abstract void ballInitialise();
@@ -37,6 +40,7 @@ public abstract class bowlingBallBase : MonoBehaviour
         accuracy = baseAccuracy;
         size = baseSize;
         bounce = baseBounce;
+        speed = baseSpeed;
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
         SphereCollider col = GetComponent<SphereCollider>();
@@ -83,7 +87,7 @@ public abstract class bowlingBallBase : MonoBehaviour
         }
     }
 
-    public void addStats(float weight, float accuracy, float size, float bounce)
+    public void addStats(float weight, float accuracy, float size, float bounce, float speed)
     {
         if (rb == null) { rb = GetComponent<Rigidbody>(); }
         if (material==null) { material = GetComponent<SphereCollider>().material; }
@@ -91,6 +95,7 @@ public abstract class bowlingBallBase : MonoBehaviour
         this.accuracy += (this.accuracy * 0.01f * accuracy);
         this.size += (this.size * 0.01f * size);
         this.bounce += (this.bounce * 0.01f * bounce);
+        this.speed += (this.speed * 0.01f * speed);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -147,7 +152,7 @@ public abstract class bowlingBallBase : MonoBehaviour
         float variance = Random.Range(-10, 11);
         Debug.Log("variance: " + variance);
         Debug.Log("Variance/accuracy: " + variance/accuracy);
-        rb.AddForce(transform.right * (variance/accuracy) * 10);
+        rb.AddForce(transform.right * (variance/accuracy) * 10 * speed);
 
     }
 }

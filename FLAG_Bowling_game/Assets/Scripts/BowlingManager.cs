@@ -9,8 +9,17 @@ public class BowlingManager : MonoBehaviour
     [SerializeField] PinSpawner pinSpawner;
     void Start()
     {
-        
+        initialise();
     }
 
+    public void initialise()
+    {
+        ballManager.initialise();
+    }
+
+    public void setBallType(GameObject ballPrefab)
+    {
+        ballManager.setBallType(ballPrefab);
+    }
 
 }

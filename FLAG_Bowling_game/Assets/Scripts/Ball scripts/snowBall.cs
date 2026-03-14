@@ -7,7 +7,7 @@ public class snowBall : bowlingBallBase
     private float goalSize;
     [SerializeField] float growSpeed;
     [SerializeField] float growPerPin;
-    public snowBall(float weight, float accuracy, float size, float bounce) : base(weight, accuracy, size, bounce)
+    public snowBall(float weight, float accuracy, float size, float bounce, float speed) : base(weight, accuracy, size, bounce, speed)
     {
     }
 

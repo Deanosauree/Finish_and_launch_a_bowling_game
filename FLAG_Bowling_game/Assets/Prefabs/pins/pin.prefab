@@ -211,4 +211,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BowlingPinBase
   points: 10
   GMultiplier: 1
-  weight: 5
+  weight: 1
