@@ -21,7 +21,7 @@ public class cameraController : MonoBehaviour
     private Vector3 defaultLocation;
     private Vector3 cameraEulers = new Vector3(0, 0, 0);
 
-    private bool moving = false;
+    public bool bowling = false;
     private IEnumerator lookRoutine;
 
     private Vector2 currentShufflePan = new Vector2(0,0);
@@ -33,7 +33,7 @@ public class cameraController : MonoBehaviour
     {
         thisCamera = GetComponentInChildren<Camera>();
         defaultLocation = thisCamera.transform.position;
-        
+        showLine(false);
     }
 
     public void PanCamera(enCameraPanDirections direction)
@@ -55,7 +55,7 @@ public class cameraController : MonoBehaviour
                 goTo(rotationGoal, thisCamera.transform.position);
                 thisCamera.fieldOfView = zooms[0];
                 currentDirection = directions.screen;
-                pointingLine.SetActive(false);
+                showLine(false);
                 break;
             case enCameraPanDirections.down:
                 goTo(laneLocation + new Vector3(0, currentShufflePan.y, 0), defaultLocation + new Vector3(currentShufflePan.x, 0, 0));
@@ -74,7 +74,7 @@ public class cameraController : MonoBehaviour
                     goTo(ballsLocationne, defaultLocation);
                     thisCamera.fieldOfView = zooms[1];
                     currentDirection = directions.balls;
-                    pointingLine.SetActive(false);
+                    showLine(false);
                 }
                 break;
             case enCameraPanDirections.right:
@@ -89,15 +89,28 @@ public class cameraController : MonoBehaviour
                     thisCamera.fieldOfView = zooms[1];
                     goTo(shopLocation, defaultLocation);
                     currentDirection = directions.shop;
-                    pointingLine.SetActive(false);
+                    showLine(false);
                 }
                 break;
         }
     }
 
+    public void showLine(bool visible)
+    {
+        if (bowling)
+        {
+            pointingLine.SetActive(visible);
+        }
+        else 
+        { 
+            pointingLine.SetActive(false);
+        }
+
+    }
+
     public void throwPan(float direction)
     {
-        if (currentDirection == directions.lane)
+        if (currentDirection == directions.lane & bowling)
         {
             currentShufflePan.y += panStep * direction;
             currentShufflePan.y = Mathf.Clamp(currentShufflePan.y, -panCap, panCap);
@@ -112,7 +125,7 @@ public class cameraController : MonoBehaviour
 
     public void throwShuffle(float direction)
     {
-        if (currentDirection == directions.lane)
+        if (currentDirection == directions.lane & bowling)
         {
             currentShufflePan.x += shuffleStep * direction;
             currentShufflePan.x = Mathf.Clamp(currentShufflePan.x, -shuffleCap, shuffleCap);
@@ -136,7 +149,6 @@ public class cameraController : MonoBehaviour
     {
         Vector3 startingPosition = thisCamera.transform.position;
         Vector3 startingRotation = cameraEulers;
-        moving = true;
         int lookTime = (int)(10 / lookSpeed);
         for (int i = 0; i < lookTime; i++) 
         {
@@ -150,7 +162,7 @@ public class cameraController : MonoBehaviour
             Debug.Log(rotTarget.y - startingRotation.y / lookTime);
             yield return new WaitForFixedUpdate();
         }
-        if (currentDirection == directions.lane) { pointingLine.SetActive(true); }
+        if (currentDirection == directions.lane) { showLine(true); }
     }
 
     private IEnumerator ContinousPan(float direction)

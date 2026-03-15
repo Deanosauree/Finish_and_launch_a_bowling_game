@@ -14,7 +14,6 @@ public class pinStoreManager : MonoBehaviour
 
     private int[] chosenPins;
     private System.Random rand = new System.Random();
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
     {
@@ -23,19 +22,20 @@ public class pinStoreManager : MonoBehaviour
         uiController.upgradeHovered.AddListener(cardHovered);
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
     }
-    void Start()
-    {
-        pickRandomUpgrades();
-        setupUI();
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void setShopOpen(bool open)
     {
-        
+        if (open)
+        {
+            pickRandomUpgrades();
+            setupUI();
+        }
+        else
+        {
+            uiController.SetUpgradesVisible(false);
+        }
     }
-
-    void setupUI()
+    private void setupUI()
     {
         List<PinCostAttributes> chosenPinAttributes = new List<PinCostAttributes>();
         foreach (int chosen in chosenPins)
@@ -71,7 +71,6 @@ public class pinStoreManager : MonoBehaviour
                 currentPin += 1;
             }
             chosenPins[i] = currentPin;
-            Debug.Log(currentPin + " current Pin vs length " + chances.Count);
             totalProbability -= chances[currentPin];
             chances[currentPin] = 0;
         }

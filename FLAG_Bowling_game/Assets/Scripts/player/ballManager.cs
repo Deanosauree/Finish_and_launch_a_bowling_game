@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
@@ -14,10 +15,16 @@ public class ballManager: MonoBehaviour
 
     [SerializeField] GameObject BowlingBallPrefab;
     [SerializeField] float throwPower = 1;
+    [SerializeField] int upgradePercent = 50;
 
     private bowlingBallBase bowlingBall;
     private bool ballHeld = false;
+    private bool bowling = false;
     private bowlingBallBase[] ballChoices;
+    private string[] chosenUpgrades = new string[3];
+    private cameraController playerCam;
+
+    public UnityEvent bowlingStarted;
 
     private Dictionary<string, float> bowlingBallData = new Dictionary<string, float> { { "weight", 0 }, { "accuracy", 0 }, { "size", 0 }, { "bounce", 0 }, { "speed", 0 } };
     
@@ -31,6 +38,7 @@ public class ballManager: MonoBehaviour
     void Awake()
     {
         upgradeUI.upgradePressed.AddListener(upgradeSelected);
+        playerCam = GetComponent<cameraController>();
     }
 
 
@@ -46,7 +54,7 @@ public class ballManager: MonoBehaviour
     public void spawnBalls()
     {
         string[] upgrades = getRandomUpgrades();
-        spawnUpgradedBalls(upgrades[0], upgrades[1], upgrades[2], new float[] { 50, 50, 50 });
+        spawnUpgradedBalls(upgrades[0], upgrades[1], upgrades[2], new float[] { upgradePercent, upgradePercent, upgradePercent });
     }
 
     public void setBallType(GameObject prefab)
@@ -57,20 +65,51 @@ public class ballManager: MonoBehaviour
     {
         if (ballHeld)
         {
-            Debug.Log("throwing");
-            bowlingBall.throwBall(throwPower);
-            ballHeld = false;
+            if (bowling)
+            {
+                Debug.Log("throwing");
+                bowlingBall.throwBall(throwPower);
+                ballHeld = false;
+                bowling = false;
+                playerCam.bowling = false;
+                playerCam.showLine(false);
+            }
+            else 
+            {
+                bowling = true;
+                bowlingStarted.Invoke();
+                playerCam.bowling = true;
+                playerCam.showLine(true);
+            }
+            
         }
     }
 
     public void destroyBall()
     {
-        bowlingBall.destroyBall.RemoveAllListeners();
-        Destroy(bowlingBall.gameObject);
-        bowlingBall = null;
+        if ( bowlingBall != null)
+        {
+            bowlingBall.destroyBall.RemoveAllListeners();
+            Destroy(bowlingBall.gameObject);
+            bowlingBall = null;
+        }
+        
     }
 
+    public void respawnBall()
+    {
+        if (bowlingBall != null)
+        {
+            destroyBall();
+        }
+        
+        bowlingBallBase ball = Instantiate(BowlingBallPrefab, this.transform, true).GetComponent<bowlingBallBase>();
+        ball.setLocation(ballHoldLocation.position, ballHoldLocation.rotation);
+        ballHeld = true;
+        ball.addStats(bowlingBallData["weight"], bowlingBallData["accuracy"], bowlingBallData["size"], bowlingBallData["bounce"], bowlingBallData["speed"]);
+        ball.setHeld(ballHeld);
 
+    }
 
     public void upgradeSelected(int index)
     {
@@ -81,6 +120,7 @@ public class ballManager: MonoBehaviour
                 destroyBall();
             }
             bowlingBall = ballChoices[index];
+            bowlingBallData[chosenUpgrades[index]] += upgradePercent;
             bowlingBall.destroyBall.AddListener(destroyBall);
             startHoldingBall();
             for (int i = 0; i < ballChoices.Length; i++)
@@ -113,6 +153,10 @@ public class ballManager: MonoBehaviour
         firstBall.addStat(firstUpgrade, values[0]);
         secondBall.addStat(secondUpgrade, values[1]);
         thirdball.addStat(thirdUpgrade, values[2]);
+
+        chosenUpgrades[0] = firstUpgrade;
+        chosenUpgrades[1] = secondUpgrade;
+        chosenUpgrades[2] = thirdUpgrade;
 
          LocalizedString firstLocalised = new LocalizedString("string table", firstUpgrade);
          LocalizedString secondLocalised = new LocalizedString("string table", secondUpgrade);
