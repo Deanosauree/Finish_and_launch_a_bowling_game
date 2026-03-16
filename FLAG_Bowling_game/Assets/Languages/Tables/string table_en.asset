@@ -66,6 +66,46 @@ MonoBehaviour:
     m_Localized: GRAPHICS
     m_Metadata:
       m_Items: []
+  - m_Id: 3592075123281920
+    m_Localized: Gold Pin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592194342178816
+    m_Localized: Volatile Pin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592307483529216
+    m_Localized: Ice Pin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592328694124544
+    m_Localized: Plastic Pin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592356519137280
+    m_Localized: Silver Pin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592383182327808
+    m_Localized: Snow Pin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592400655798272
+    m_Localized: Tournament Pin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592423753830400
+    m_Localized: Tungsten Pin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3593258579709952
+    m_Localized: Radioactive Pin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3593317748756480
+    m_Localized: Basic Pin
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
