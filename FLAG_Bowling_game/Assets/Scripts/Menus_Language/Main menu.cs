@@ -51,7 +51,7 @@ public class Mainmenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        Debug.Log(volume);
+        
     }
 
     public void SetQuality(int qualityIndex)
