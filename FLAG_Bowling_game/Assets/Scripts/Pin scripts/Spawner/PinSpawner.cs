@@ -17,7 +17,7 @@ public class PinSpawner : MonoBehaviour
 
     private void Awake()
     {
-        CalculateWeights();
+        CalculateWeights(50,0,0,50,30,0,0,50);
     }
 
     private void Start()
@@ -58,11 +58,45 @@ public class PinSpawner : MonoBehaviour
         return 0;
     }
 
-    private void CalculateWeights()
+    public void CalculateWeights(float pinChace = 0.0f, float plasticPinChance = 0.0f, float sliverPinChance = 0.0f, 
+        float explosivePinChance = 0.0f, float icePinChance = 0.0f, float tungstenPinChance = 0.0f, 
+        float tournamentPinChance = 0.0f,float goldenPinChance = 0.0f)
     {
         accumulatedWeights = 0f;
         foreach (var Pin in pins)
         {
+            if (Pin.prefab.name == "pin")
+            {
+                Pin.chance = pinChace;
+            }
+            else if(Pin.prefab.name == "Plastic Pin")
+            {
+                Pin.chance = plasticPinChance;
+            }
+            else if(Pin.prefab.name == "Sliver Pin")
+            {
+                Pin.chance = sliverPinChance;
+            }
+            else if(Pin.prefab.name == "Explosive Pin")
+            {
+                Pin.chance = explosivePinChance;
+            }
+            else if(Pin.prefab.name == "Ice Pin")
+            {
+                Pin.chance = icePinChance;
+            }
+            else if(Pin.prefab.name == "Tungsten Pin")
+            {
+                Pin.chance = tungstenPinChance;
+            }
+            else if(Pin.prefab.name == "Tournament Pin")
+            {
+                Pin.chance = tournamentPinChance;
+            }
+            else
+            {
+                Pin.chance = goldenPinChance;
+            }
             accumulatedWeights += Pin.chance;
             Pin._weight = accumulatedWeights;
         }

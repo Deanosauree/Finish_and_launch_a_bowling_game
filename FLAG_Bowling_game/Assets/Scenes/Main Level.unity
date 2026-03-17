@@ -1396,28 +1396,28 @@ MonoBehaviour:
   PinParent: {fileID: 795541084}
   pins:
   - prefab: {fileID: 7047711554655907528, guid: a1ccad353bbc2ec4d87bdd376937a341, type: 3}
-    chance: 100
+    chance: 1
     _weight: 0
   - prefab: {fileID: 7047711554655907528, guid: 8a19f9419cd8d04468783ba923d0d2d9, type: 3}
-    chance: 0
+    chance: 1
     _weight: 0
   - prefab: {fileID: 7047711554655907528, guid: 7a8da6f95b99ac240a78f967cde865cb, type: 3}
-    chance: 0
+    chance: 1
     _weight: 0
   - prefab: {fileID: 6825363092315837687, guid: 60b513496639a974e8e9f32fb11ecf60, type: 3}
-    chance: 0
+    chance: 1
     _weight: 0
   - prefab: {fileID: 7047711554655907528, guid: 3f4ce96068de7d244b29e3baab1fc5ba, type: 3}
-    chance: 0
+    chance: 1
     _weight: 0
   - prefab: {fileID: 7047711554655907528, guid: 51c0661095a370b44be9ee8b0dc05b7d, type: 3}
-    chance: 0
+    chance: 1
     _weight: 0
   - prefab: {fileID: 7047711554655907528, guid: 3bd840e351587794496c84d1526b5115, type: 3}
-    chance: 0
+    chance: 1
     _weight: 0
   - prefab: {fileID: 7047711554655907528, guid: fb971cdcf2307e14992a83067af7a0d0, type: 3}
-    chance: 0
+    chance: 1
     _weight: 0
 --- !u!4 &175600988
 Transform:
@@ -12246,9 +12246,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 29775731}
-  - {fileID: 795541084}
   - {fileID: 175600988}
+  - {fileID: 795541084}
+  - {fileID: 29775731}
   m_Father: {fileID: 505604060}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026662775
