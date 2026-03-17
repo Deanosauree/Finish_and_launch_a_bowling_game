@@ -1,6 +1,4 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
@@ -90,7 +88,6 @@ public class pinStoreManager : MonoBehaviour
 
     public void cardHovered(int index)
     {
-        Debug.Log(index);
         int correctedIndex = chosenPins[index];
         PinCostAttributes pin = pinAttributes[correctedIndex];
         LocalizedString pinName = pin.pinName;

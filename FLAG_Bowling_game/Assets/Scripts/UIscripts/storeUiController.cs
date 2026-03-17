@@ -1,8 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class storeUiController : MonoBehaviour
@@ -31,7 +29,6 @@ public class storeUiController : MonoBehaviour
             buttonRelay relay = button.GetComponent<buttonRelay>();
             relay.buttonPressed.AddListener(IndexedButtonPress);
             buttonCount += 1;
-            Debug.Log("Button count is " + buttonCount);
         }
         
         SetUpgradesVisible(false);
@@ -57,7 +54,6 @@ public class storeUiController : MonoBehaviour
     {
         for (int i = 0; i < pins.Length; i++) 
         {
-            Debug.Log("Setting UI");
             PinCostAttributes pin = pins[i];
             float cost = pin.pinPrice * Mathf.Pow(pin.pinPriceMultiplier, pin.timesPurchased);
             buttonTextMeshes[i].text = cost.ToString();

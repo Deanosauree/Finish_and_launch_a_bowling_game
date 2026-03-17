@@ -1,5 +1,4 @@
 using System.Collections;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class cameraController : MonoBehaviour
@@ -157,9 +156,6 @@ public class cameraController : MonoBehaviour
             cameraEulers = new Vector3(cameraEulers.x+((rotTarget.x-startingRotation.x)/lookTime), cameraEulers.y + ((rotTarget.y - startingRotation.y) / lookTime), 0);
             thisCamera.transform.rotation = Quaternion.Euler(cameraEulers);
 
-            Debug.Log(lookTime);
-            Debug.Log((posTarget.z - startingPosition.z / lookTime));
-            Debug.Log(rotTarget.y - startingRotation.y / lookTime);
             yield return new WaitForFixedUpdate();
         }
         if (currentDirection == directions.lane) { showLine(true); }
