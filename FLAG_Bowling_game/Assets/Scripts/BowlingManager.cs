@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BowlingManager : MonoBehaviour
@@ -25,7 +26,12 @@ public class BowlingManager : MonoBehaviour
     public void initialise()
     {
         ballManager.initialise();
-        pinStoreManager.setShopOpen(true);
+        pinStoreManager.setShopOpen(false);
+        Dictionary<string, float> weights = pinStoreManager.getWeights();
+        pinSpawner.CalculateWeights(pinChace: 100, plasticPinChance: weights["plasticPin"], explosivePinChance: weights["explosivePin"],
+            icePinChance: weights["icePin"], sliverPinChance: weights["silverPin"], tungstenPinChance: weights["tungstenPin"],
+            tournamentPinChance: weights["tournamentPin"], goldenPinChance: weights["goldPin"]);
+        pinSpawner.SpawnAllPins();
     }
 
     public void setBallType(GameObject ballPrefab)
@@ -38,7 +44,7 @@ public class BowlingManager : MonoBehaviour
         pinStoreManager.setShopOpen(false);
     }
 
-    public void pinsReset()
+    public void pinsReset() // CLEAR PINS EITHER BEFORE CALLING AN EVENT THAT CALLS THIS, OR CALL THE CLEAR PIN FUNCTION HERE
     {
         ballManager.destroyBall();
         if (ballsThrown >= ballsPerRound)
@@ -58,7 +64,12 @@ public class BowlingManager : MonoBehaviour
     {
         round++;
         pinStoreManager.setShopOpen(true);
-        ballManager.spawnBalls(); 
+        ballManager.spawnBalls();
+        Dictionary<string, float> weights = pinStoreManager.getWeights();
+        pinSpawner.CalculateWeights(pinChace: 100, plasticPinChance: weights["plasticPin"], explosivePinChance: weights["explosivePin"],
+            icePinChance: weights["icePin"], sliverPinChance: weights["silverPin"], tungstenPinChance: weights["tungstenPin"], 
+            tournamentPinChance: weights["tournamentPin"], goldenPinChance: weights["goldPin"]);
+        pinSpawner.SpawnAllPins();
     }
 
 }

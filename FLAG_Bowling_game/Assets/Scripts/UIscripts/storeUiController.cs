@@ -50,21 +50,21 @@ public class storeUiController : MonoBehaviour
         foreach (var button in buttons) { button.SetActive(visible); }
     }
 
-    public void SetUpgrades(PinCostAttributes[] pins)
+    public void SetUpgrades(PinCostAttributes[] pins, int[] timesPurchased)
     {
         for (int i = 0; i < pins.Length; i++) 
         {
             PinCostAttributes pin = pins[i];
-            float cost = pin.pinPrice * Mathf.Pow(pin.pinPriceMultiplier, pin.timesPurchased);
+            float cost = pin.pinPrice * Mathf.Pow(pin.pinPriceMultiplier, timesPurchased[i]);
             buttonTextMeshes[i].text = cost.ToString();
             buttons[i].GetComponent<Image>().sprite = pin.card;
         }
 
     }
 
-    public void updateUpgrade(PinCostAttributes pin, int index)
+    public void updateUpgrade(PinCostAttributes pin, int index, int timesPurchased)
     {
-        float cost = pin.pinPrice * Mathf.Pow(pin.pinPriceMultiplier, pin.timesPurchased);
+        float cost = pin.pinPrice * Mathf.Pow(pin.pinPriceMultiplier, timesPurchased);
         buttonTextMeshes[index].text = cost.ToString();
     }
     private void hideUpgrade(int index)

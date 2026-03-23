@@ -17,12 +17,10 @@ public class PinSpawner : MonoBehaviour
 
     private void Awake()
     {
-        CalculateWeights(50,0,0,50,30,0,0,50);
     }
 
     private void Start()
     {
-        SpawnAllPins();
     }
 
     public void SpawnAllPins()

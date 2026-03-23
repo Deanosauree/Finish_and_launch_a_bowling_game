@@ -31,12 +31,13 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   card: {fileID: 21300000, guid: 0c7d83bf7d730ec40bad2bf489eb0284, type: 3}
+  pinKey: tungstenPin
   pinPrice: 2500
   pinChance: 15
   amountPurchasable: 0
-  pinProbabilityIncrease: 0
+  baseProbability: 0
+  pinProbabilityIncrease: 1
   pinPriceMultiplier: 2
-  timesPurchased: 0
   references:
     version: 2
     RefIds: []

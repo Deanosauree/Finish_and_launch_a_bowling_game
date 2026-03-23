@@ -31,12 +31,13 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   card: {fileID: 21300000, guid: 81ce12de4e0bf5a4baaf6392fd4e8091, type: 3}
+  pinKey: goldPin
   pinPrice: 20000
   pinChance: 20
   amountPurchasable: 0
-  pinProbabilityIncrease: 0
+  baseProbability: 0
+  pinProbabilityIncrease: 1
   pinPriceMultiplier: 1.5
-  timesPurchased: 0
   references:
     version: 2
     RefIds: []

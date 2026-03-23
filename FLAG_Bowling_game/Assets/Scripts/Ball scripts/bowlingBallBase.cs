@@ -67,19 +67,22 @@ public abstract class bowlingBallBase : MonoBehaviour
         switch (type)
         {
             case "weight":
-                weight = weight + (this.weight * 0.01f * value);
+                weight = weight + (baseWeight * 0.01f * value);
                 if (rb==null) rb = GetComponent<Rigidbody>();
                 rb.mass = weight;
                 break;
             case "accuracy":
-                accuracy = accuracy + (accuracy *0.01f* value);
+                accuracy = accuracy + (baseAccuracy *0.01f* value);
                 break;
             case "size":
-                size = size + (this.size * 0.01f * value);
+                size = size + (baseSize * 0.01f * value);
                 transform.localScale = new Vector3(size, size, size);
                 break;
             case "bounce":
-                bounce = bounce + (this.bounce * 0.01f * value);
+                bounce = bounce + (baseBounce * 0.01f * value);
+                break;
+            case "speed":
+                speed = speed + (baseSpeed * 0.001f * value);
                 break;
             default:
                 Debug.LogError("inproper stat "+ type+". Please use weight, accuracy, size or bounce");

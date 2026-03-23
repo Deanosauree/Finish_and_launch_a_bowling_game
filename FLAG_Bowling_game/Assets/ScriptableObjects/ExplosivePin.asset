@@ -31,12 +31,13 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   card: {fileID: 21300000, guid: a606446bdab613248804b4e2c7f9119c, type: 3}
+  pinKey: explosivePin
   pinPrice: 4500
   pinChance: 10
   amountPurchasable: 0
-  pinProbabilityIncrease: 0
+  baseProbability: 0
+  pinProbabilityIncrease: 1
   pinPriceMultiplier: 1.33
-  timesPurchased: 0
   references:
     version: 2
     RefIds: []

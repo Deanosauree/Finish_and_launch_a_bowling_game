@@ -9,12 +9,13 @@ public class pinStoreManager : MonoBehaviour
     [SerializeField] private PinSpawner spawner;
     [SerializeField] PinCostAttributes[] pinAttributes;
 
-
+    private int[] timesPinsPurchased; 
     private int[] chosenPins;
     private System.Random rand = new System.Random();
 
     private void Awake()
     {
+        timesPinsPurchased = new int[pinAttributes.Length];
         chosenPins = new int[uiController.buttonCount];
         uiController.upgradePressed.AddListener(cardPressed);
         uiController.upgradeHovered.AddListener(cardHovered);
@@ -33,6 +34,20 @@ public class pinStoreManager : MonoBehaviour
             uiController.SetUpgradesVisible(false);
         }
     }
+
+    public Dictionary<string,float> getWeights()
+    {
+        Dictionary<string, float> weights = new Dictionary<string, float>();
+        for (int i = 0; i < pinAttributes.Length; i++)
+        {
+            PinCostAttributes attr = pinAttributes[i];
+            float weight = attr.baseProbability + attr.pinProbabilityIncrease*timesPinsPurchased[i];
+            string name = attr.pinKey;
+            weights.Add(name, weight);
+        }
+        return weights;
+    }
+
     private void setupUI()
     {
         List<PinCostAttributes> chosenPinAttributes = new List<PinCostAttributes>();
@@ -41,7 +56,7 @@ public class pinStoreManager : MonoBehaviour
             chosenPinAttributes.Add(pinAttributes[chosen]);
         }
         PinCostAttributes[] chosenAttArr = chosenPinAttributes.ToArray();
-        uiController.SetUpgrades(chosenAttArr);
+        uiController.SetUpgrades(chosenAttArr, timesPinsPurchased);
         uiController.SetUpgradesVisible(true);
     }
 
@@ -97,6 +112,7 @@ public class pinStoreManager : MonoBehaviour
 
     public void cardPressed(int index)
     {
-
+        int correctedIndex = chosenPins[index];
+        timesPinsPurchased[correctedIndex] ++;
     }
 }
