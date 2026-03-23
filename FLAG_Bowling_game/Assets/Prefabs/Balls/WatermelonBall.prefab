@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4114070452895668601}
-  - component: {fileID: 2001581391579842437}
+  - component: {fileID: 136505936077477605}
   - component: {fileID: 5974211072964865892}
   - component: {fileID: 201410295313344269}
   - component: {fileID: 2699822443963221104}
   - component: {fileID: 4609401802820866104}
   m_Layer: 0
-  m_Name: SnowBall
+  m_Name: WatermelonBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +36,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2001581391579842437
+--- !u!114 &136505936077477605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,19 +45,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5258841345652020079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b9a2a68721ac747984b9877ba9c12f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a2fa20fc2027d540a187cb03b45dfeb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::snowBall
+  m_EditorClassIdentifier: Assembly-CSharp::watermelonBall
   destroyBall:
     m_PersistentCalls:
       m_Calls: []
-  baseWeight: 20
+  baseWeight: 15
   baseAccuracy: 0.3
-  baseSize: 2
-  baseBounce: 0.1
+  baseSize: 1.5
+  baseBounce: 0.7
   baseSpeed: 1
-  growSpeed: 0.05
-  growPerPin: 1
+  exp: {fileID: 1121192042590650, guid: 87056acaee9f6524b9332e5c28763e6b, type: 3}
+  expForce: 800
+  radius: 5
+  upwardsModifier: 2
+  timeDelay: 1.5
+  hitsToKaboom: 3
 --- !u!54 &5974211072964865892
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,7 +135,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a3bfdd39a3b715949ba8deac87e9cc34, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -162,4 +166,4 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5258841345652020079}
-  m_Mesh: {fileID: 973877516759717424, guid: 6944d12ea7112cb4e95e06e270b512c3, type: 3}
+  m_Mesh: {fileID: 4300000, guid: f8644d89055b3fe4f8e278dfaa4ae38f, type: 2}
