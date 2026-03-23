@@ -24,6 +24,9 @@ public abstract class bowlingBallBase : MonoBehaviour
     protected float bounce;
     protected float speed;
 
+    [SerializeField] protected float additionalMult = 0;
+    [SerializeField] protected float additionalPoints = 0;
+
     protected Rigidbody rb;
     protected PhysicsMaterial material;
 
@@ -34,6 +37,15 @@ public abstract class bowlingBallBase : MonoBehaviour
 
     protected abstract void ballInitialise();
 
+    public float getAddMulti()
+    {
+        return additionalMult;
+    }
+
+    public float getAddPoints()
+    {
+        return additionalPoints;
+    }
     private void Awake()
     {
         weight = baseWeight;

@@ -11,7 +11,7 @@ public static class PointCalc
 
     public static void PinDropped(float points, float mult)
     {
-        pinsDropped += 1;
+        pinsDropped ++;
         totalPoints = totalPoints + points;
         multyplier = multyplier * mult;
 
@@ -20,6 +20,12 @@ public static class PointCalc
         SetMulLabel(multyplier);
     }
 
+    public static void addMultiplier(float multi)
+    {
+        multyplier += multi;
+        SetPointLabel(totalPoints);
+        SetMulLabel(multyplier);
+    }
 
     public static void SetPointLabel(double value)
     {
