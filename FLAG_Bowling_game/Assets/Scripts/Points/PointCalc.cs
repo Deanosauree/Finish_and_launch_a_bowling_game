@@ -27,6 +27,11 @@ public static class PointCalc
         SetMulLabel(multyplier);
     }
 
+    public static (float, float, int) getPointsMultiPins()
+    {
+        return (totalPoints, multyplier, pinsDropped);
+    }
+
     public static void SetPointLabel(double value)
     {
         string labelValue = FormatNumbers.Format(value);

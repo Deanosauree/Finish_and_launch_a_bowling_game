@@ -24,6 +24,8 @@ public class ballManager: MonoBehaviour
     private string[] chosenUpgrades = new string[3];
     private cameraController playerCam;
 
+    private (float, float) pointsAndMulti;
+
     public UnityEvent bowlingStarted;
 
     private Dictionary<string, float> bowlingBallData = new Dictionary<string, float> { { "weight", 0 }, { "accuracy", 0 }, { "size", 0 }, { "bounce", 0 }, { "speed", 0 } };
@@ -33,6 +35,11 @@ public class ballManager: MonoBehaviour
     public void initialise()
     {
         spawnBalls();
+    }
+
+    public (float, float) getAdditionalScore()
+    {
+        return pointsAndMulti;
     }
 
     void Awake()
@@ -95,6 +102,13 @@ public class ballManager: MonoBehaviour
         }
         
     }
+    private void setPointsAndMulti()
+    {
+        if (pointsAndMulti != (null, null))
+        {
+            pointsAndMulti = (bowlingBall.getAddPoints(), bowlingBall.getAddMulti());
+        }
+    }
 
     public void respawnBall()
     {
@@ -108,6 +122,7 @@ public class ballManager: MonoBehaviour
         ballHeld = true;
         ball.addStats(bowlingBallData["weight"], bowlingBallData["accuracy"], bowlingBallData["size"], bowlingBallData["bounce"], bowlingBallData["speed"]);
         ball.setHeld(ballHeld);
+        setPointsAndMulti();
 
     }
 
@@ -133,6 +148,7 @@ public class ballManager: MonoBehaviour
             }
             upgradeUI.SetUpgradesVisible(false);
             ballChoices = null;
+            setPointsAndMulti();
         }
     }
 

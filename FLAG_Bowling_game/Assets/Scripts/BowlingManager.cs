@@ -46,6 +46,19 @@ public class BowlingManager : MonoBehaviour
 
     public void pinsReset() // CLEAR PINS EITHER BEFORE CALLING AN EVENT THAT CALLS THIS, OR CALL THE CLEAR PIN FUNCTION HERE
     {
+        float points;
+        float multi;
+        int dropped;
+        float adPoints;
+        float adMulti;
+        (points, multi, dropped) = PointCalc.getPointsMultiPins();
+        (adPoints, adMulti) = ballManager.getAdditionalScore();
+
+        points += adPoints*dropped;
+        multi += adMulti*dropped;
+
+        double finalScore = points * multi;
+
         ballManager.destroyBall();
         if (ballsThrown >= ballsPerRound)
         {
