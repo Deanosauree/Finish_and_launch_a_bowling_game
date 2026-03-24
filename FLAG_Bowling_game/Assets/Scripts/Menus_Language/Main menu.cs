@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class Mainmenu : MonoBehaviour
@@ -8,6 +9,7 @@ public class Mainmenu : MonoBehaviour
 
     Resolution[] resolutions;
     public TMP_Dropdown resolutionDropdown;
+    public AudioMixer audioMixer;
 
     void Start()
     {
@@ -51,7 +53,7 @@ public class Mainmenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        
+        audioMixer.SetFloat("Volume", volume);
     }
 
     public void SetQuality(int qualityIndex)
