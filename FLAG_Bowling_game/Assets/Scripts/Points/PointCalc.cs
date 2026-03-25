@@ -1,10 +1,15 @@
 using UnityEngine;
+using UnityEngine.Events;
+
+public delegate void Notify();
 
 public static class PointCalc
 {
     private static int pinsDropped = 0;
     private static float totalPoints = 0;
     private static float multyplier = 1.0f;
+
+    public static event Notify PinDroppedEvent;
 
 
 
@@ -18,6 +23,7 @@ public static class PointCalc
 
         SetPointLabel(totalPoints);
         SetMulLabel(multyplier);
+        PinDroppedEvent.Invoke();
     }
 
     public static void addMultiplier(float multi)
@@ -36,13 +42,13 @@ public static class PointCalc
     {
         string labelValue = FormatNumbers.Format(value);
 
-        Debug.Log("points: " + labelValue);
+        Debug.Log("points: ");
     }
 
     public static void SetMulLabel(double value)
     {
         string labelValue = FormatNumbers.Format(value);
-        Debug.Log("multyplier: " + labelValue);
+        Debug.Log("multyplier: ");
     }
 
 }

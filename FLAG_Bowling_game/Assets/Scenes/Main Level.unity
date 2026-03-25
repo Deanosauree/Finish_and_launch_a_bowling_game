@@ -13400,6 +13400,7 @@ MonoBehaviour:
   ballManager: {fileID: 1718067213}
   pinStoreManager: {fileID: 745814114}
   pinSpawner: {fileID: 175600987}
+  pinResetTime: 5
 --- !u!1 &1718836562
 GameObject:
   m_ObjectHideFlags: 0

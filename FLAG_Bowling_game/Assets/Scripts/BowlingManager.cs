@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class BowlingManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class BowlingManager : MonoBehaviour
     [SerializeField] ballManager ballManager;
     [SerializeField] pinStoreManager pinStoreManager;
     [SerializeField] PinSpawner pinSpawner;
+    [SerializeField] float pinResetTime;
 
     private int ballsPerRound = 2;
     private int ballsThrown = 0;
@@ -16,6 +18,7 @@ public class BowlingManager : MonoBehaviour
     private void Awake()
     {
         ballManager.bowlingStarted.AddListener(bowlingStarted);
+        PointCalc.PinDroppedEvent += pinDropped;
     }
 
     void Start()
@@ -44,6 +47,12 @@ public class BowlingManager : MonoBehaviour
         pinStoreManager.setShopOpen(false);
     }
 
+    public void pinDropped()
+    {
+        CancelInvoke("pinsReset");
+        Invoke("pinsReset", pinResetTime);
+    }
+
     public void pinsReset() // CLEAR PINS EITHER BEFORE CALLING AN EVENT THAT CALLS THIS, OR CALL THE CLEAR PIN FUNCTION HERE
     {
         float points;
@@ -54,23 +63,33 @@ public class BowlingManager : MonoBehaviour
         (points, multi, dropped) = PointCalc.getPointsMultiPins();
         (adPoints, adMulti) = ballManager.getAdditionalScore();
 
-        points += adPoints*dropped;
-        multi += adMulti*dropped;
+        points += adPoints * dropped;
+        multi += adMulti * dropped;
 
         double finalScore = points * multi;
+        Debug.Log($"The score is: {finalScore}, Balls thrown in {ballsThrown}");
 
         ballManager.destroyBall();
-        if (ballsThrown >= ballsPerRound)
+        if (dropped == 100)
         {
             ballsThrown = 0;
             newRound();
-            // start up store
         }
-        else 
-        { 
-            ballsThrown++;
-            ballManager.respawnBall();
+        else
+        {
+            if (ballsThrown >= ballsPerRound)
+            {
+                ballsThrown = 0;
+                newRound();
+                // start up store
+            }
+            else
+            {
+                ballsThrown++;
+                ballManager.respawnBall();
+            }
         }
+        
     }
 
     private void newRound()
@@ -80,9 +99,9 @@ public class BowlingManager : MonoBehaviour
         ballManager.spawnBalls();
         Dictionary<string, float> weights = pinStoreManager.getWeights();
         pinSpawner.CalculateWeights(pinChace: 100, plasticPinChance: weights["plasticPin"], explosivePinChance: weights["explosivePin"],
-            icePinChance: weights["icePin"], sliverPinChance: weights["silverPin"], tungstenPinChance: weights["tungstenPin"], 
+            icePinChance: weights["icePin"], sliverPinChance: weights["silverPin"], tungstenPinChance: weights["tungstenPin"],
             tournamentPinChance: weights["tournamentPin"], goldenPinChance: weights["goldPin"]);
         pinSpawner.SpawnAllPins();
     }
-
+        
 }

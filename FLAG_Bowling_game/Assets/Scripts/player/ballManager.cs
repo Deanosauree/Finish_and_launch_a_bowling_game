@@ -99,6 +99,7 @@ public class ballManager: MonoBehaviour
             bowlingBall.destroyBall.RemoveAllListeners();
             Destroy(bowlingBall.gameObject);
             bowlingBall = null;
+            ballHeld = false;
         }
         
     }
@@ -118,9 +119,10 @@ public class ballManager: MonoBehaviour
         }
         
         bowlingBallBase ball = Instantiate(BowlingBallPrefab, this.transform, true).GetComponent<bowlingBallBase>();
+        bowlingBall = ball;
         ball.setLocation(ballHoldLocation.position, ballHoldLocation.rotation);
-        ballHeld = true;
         ball.addStats(bowlingBallData["weight"], bowlingBallData["accuracy"], bowlingBallData["size"], bowlingBallData["bounce"], bowlingBallData["speed"]);
+        ballHeld = true;
         ball.setHeld(ballHeld);
         setPointsAndMulti();
 
