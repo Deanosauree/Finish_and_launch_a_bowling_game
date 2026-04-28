@@ -110,6 +110,42 @@ MonoBehaviour:
     m_Localized: Points
     m_Metadata:
       m_Items: []
+  - m_Id: 21017948962938880
+    m_Localized: Atlas Ball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21018000401883136
+    m_Localized: Bomb Ball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21018029464215552
+    m_Localized: Basic Ball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21018058094534656
+    m_Localized: Baseball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21018086821322752
+    m_Localized: Cannon Ball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21018122330300416
+    m_Localized: Gold Ball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21018155578548224
+    m_Localized: Musket Shot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21018179255394304
+    m_Localized: Snow Ball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21018197945212928
+    m_Localized: Melon Ball
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

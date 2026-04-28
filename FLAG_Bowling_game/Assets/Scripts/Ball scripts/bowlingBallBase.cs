@@ -131,10 +131,8 @@ public abstract class bowlingBallBase : MonoBehaviour
         switch (hit.tag)
         {
             case "Pin":
-                Debug.Log("hitPinPush");
                 Vector3 forcePosition = new Vector3(hit.transform.position.x, transform.position.y, hit.transform.position.z);
                 Vector3 force = (forcePosition - transform.position).normalized * bounce * weight;
-                Debug.Log(force);
                 hit.GetComponent<Rigidbody>().AddForceAtPosition(force, forcePosition);
                 break;
             case "Barrier":

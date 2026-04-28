@@ -23,6 +23,12 @@ public class pinStoreManager : MonoBehaviour
         uiController.upgradePressed.AddListener(cardPressed);
         uiController.upgradeHovered.AddListener(cardHovered);
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+        
+    }
+
+    private void Start()
+    {
+        uiController.updatePointsText(points.GetLocalizedString());
     }
 
     public void setShopOpen(bool open)

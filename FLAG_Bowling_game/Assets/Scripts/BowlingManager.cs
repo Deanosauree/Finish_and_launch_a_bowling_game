@@ -24,6 +24,14 @@ public class BowlingManager : MonoBehaviour
         ballManager.bowlingStarted.AddListener(bowlingStarted);
         PointCalc.PinDroppedEvent += pinDropped;
         ballManager.ballSelected.AddListener(startRound);
+        if (PlayerInfo.bowlingBall != null)
+        {
+            ballManager.setBallType(PlayerInfo.bowlingBall);
+        }
+        else 
+        {
+            Debug.Log("No Ball Apparent");
+        }
     }
 
     void Start()
