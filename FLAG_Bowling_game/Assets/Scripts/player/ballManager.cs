@@ -28,6 +28,8 @@ public class ballManager: MonoBehaviour
 
     public UnityEvent bowlingStarted;
 
+    public UnityEvent ballSelected;
+
     private Dictionary<string, float> bowlingBallData = new Dictionary<string, float> { { "weight", 0 }, { "accuracy", 0 }, { "size", 0 }, { "bounce", 0 }, { "speed", 0 } };
     
 
@@ -151,6 +153,7 @@ public class ballManager: MonoBehaviour
             upgradeUI.SetUpgradesVisible(false);
             ballChoices = null;
             setPointsAndMulti();
+            ballSelected.Invoke();
         }
     }
 

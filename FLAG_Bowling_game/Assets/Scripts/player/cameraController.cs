@@ -15,7 +15,7 @@ public class cameraController : MonoBehaviour
     private Vector3 screenLocation = new Vector3(-35, 0, 0);
     private Vector3 ballsLocationne = new Vector3(0, -90, 0);
     private Vector3 laneLocation =new Vector3(0,0,0);
-    private Vector3 shopLocation = new Vector3(0, 90, 0);
+    private Vector3 shopLocation = new Vector3(-10, 90, 0);
     private float[] zooms = {30,40,60 };
     private Vector3 defaultLocation;
     private Vector3 cameraEulers = new Vector3(0, 0, 0);

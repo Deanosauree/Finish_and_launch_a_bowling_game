@@ -106,6 +106,10 @@ MonoBehaviour:
     m_Localized: Basic Pin
     m_Metadata:
       m_Items: []
+  - m_Id: 20968840415928320
+    m_Localized: Points
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

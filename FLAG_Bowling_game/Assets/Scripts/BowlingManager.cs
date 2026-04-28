@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BowlingManager : MonoBehaviour
 {
@@ -14,11 +15,15 @@ public class BowlingManager : MonoBehaviour
     private int ballsPerRound = 2;
     private int ballsThrown = 0;
     private int round = 0;
+    private float totalPoints;
+
+    private bool roundReady = false;
 
     private void Awake()
     {
         ballManager.bowlingStarted.AddListener(bowlingStarted);
         PointCalc.PinDroppedEvent += pinDropped;
+        ballManager.ballSelected.AddListener(startRound);
     }
 
     void Start()
@@ -65,8 +70,10 @@ public class BowlingManager : MonoBehaviour
 
         points += adPoints * dropped;
         multi += adMulti * dropped;
-
+        
         double finalScore = points * multi;
+        totalPoints += points;
+        pinStoreManager.addPoints(points);
         Debug.Log($"The score is: {finalScore}, Balls thrown in {ballsThrown}");
 
         ballManager.destroyBall();
@@ -97,11 +104,20 @@ public class BowlingManager : MonoBehaviour
         round++;
         pinStoreManager.setShopOpen(true);
         ballManager.spawnBalls();
-        Dictionary<string, float> weights = pinStoreManager.getWeights();
-        pinSpawner.CalculateWeights(pinChace: 100, plasticPinChance: weights["plasticPin"], explosivePinChance: weights["explosivePin"],
-            icePinChance: weights["icePin"], sliverPinChance: weights["silverPin"], tungstenPinChance: weights["tungstenPin"],
-            tournamentPinChance: weights["tournamentPin"], goldenPinChance: weights["goldPin"]);
-        pinSpawner.SpawnAllPins();
+        roundReady = true;
+        
+    }
+
+    public void startRound()
+    {
+        if (roundReady)
+        {
+            Dictionary<string, float> weights = pinStoreManager.getWeights();
+            pinSpawner.CalculateWeights(pinChace: 100, plasticPinChance: weights["plasticPin"], explosivePinChance: weights["explosivePin"],
+                icePinChance: weights["icePin"], sliverPinChance: weights["silverPin"], tungstenPinChance: weights["tungstenPin"],
+                tournamentPinChance: weights["tournamentPin"], goldenPinChance: weights["goldPin"]);
+            pinSpawner.SpawnAllPins();
+        }
     }
         
 }

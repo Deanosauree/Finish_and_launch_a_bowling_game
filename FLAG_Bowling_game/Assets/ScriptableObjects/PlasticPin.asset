@@ -37,7 +37,7 @@ MonoBehaviour:
   amountPurchasable: 0
   baseProbability: 0
   pinProbabilityIncrease: 5
-  pinPriceMultiplier: 0
+  pinPriceMultiplier: 1
   references:
     version: 2
     RefIds: []

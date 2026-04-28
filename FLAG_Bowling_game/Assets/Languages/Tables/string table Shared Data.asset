@@ -145,6 +145,10 @@ MonoBehaviour:
     m_Key: basicPinDesc
     m_Metadata:
       m_Items: []
+  - m_Id: 20968840415928320
+    m_Key: points
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

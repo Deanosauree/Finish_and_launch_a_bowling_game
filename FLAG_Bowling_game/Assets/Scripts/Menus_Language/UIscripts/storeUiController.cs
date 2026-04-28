@@ -12,6 +12,8 @@ public class storeUiController : MonoBehaviour
     TextMeshProUGUI[] buttonTextMeshes;
     [SerializeField] GameObject panelObject;
     [SerializeField] TextMeshProUGUI[] descriptionPanel;
+    [SerializeField] TextMeshProUGUI pointsNumber;
+    [SerializeField] TextMeshProUGUI pointsText;
 
     public UnityEvent<int> upgradePressed;
     public UnityEvent<int> upgradeHovered;
@@ -56,7 +58,7 @@ public class storeUiController : MonoBehaviour
         {
             PinCostAttributes pin = pins[i];
             float cost = pin.pinPrice * Mathf.Pow(pin.pinPriceMultiplier, timesPurchased[i]);
-            buttonTextMeshes[i].text = cost.ToString();
+            buttonTextMeshes[i].text = cost.ToString("0.");
             buttons[i].GetComponent<Image>().sprite = pin.card;
         }
 
@@ -86,5 +88,15 @@ public class storeUiController : MonoBehaviour
     public void IndexedButtonPress(int index)
     {
         upgradePressed.Invoke(index);
+    }
+
+    public void updatePoints(float points)
+    {
+        pointsNumber.text = points.ToString("0000000.00");
+    }
+
+    public void updatePointsText(string text)
+    {
+        pointsText.text = text;
     }
 }

@@ -9,8 +9,11 @@ public class pinStoreManager : MonoBehaviour
     [SerializeField] private PinSpawner spawner;
     [SerializeField] PinCostAttributes[] pinAttributes;
 
+    [SerializeField] LocalizedString points;
+
     private int[] timesPinsPurchased; 
     private int[] chosenPins;
+    public float currentPoints;
     private System.Random rand = new System.Random();
 
     private void Awake()
@@ -91,7 +94,7 @@ public class pinStoreManager : MonoBehaviour
 
     void OnLocaleChanged(Locale newLocale)
     {
-
+        uiController.updatePointsText(points.GetLocalizedString());
     }
 
     public void showUpgrades()
@@ -113,6 +116,21 @@ public class pinStoreManager : MonoBehaviour
     public void cardPressed(int index)
     {
         int correctedIndex = chosenPins[index];
-        timesPinsPurchased[correctedIndex] ++;
+        PinCostAttributes pin = pinAttributes[correctedIndex];
+        float cost = pin.pinPrice * Mathf.Pow(pin.pinPriceMultiplier, timesPinsPurchased[correctedIndex]);
+        if (cost <= currentPoints)
+        {
+            currentPoints -= cost;
+            timesPinsPurchased[correctedIndex]++;
+            uiController.updateUpgrade(pin, index, timesPinsPurchased[correctedIndex]);
+            uiController.updatePoints(currentPoints);
+        }
+        
+    }
+
+    public void addPoints(float points)
+    {
+        currentPoints += points;
+        uiController.updatePoints(currentPoints);
     }
 }
