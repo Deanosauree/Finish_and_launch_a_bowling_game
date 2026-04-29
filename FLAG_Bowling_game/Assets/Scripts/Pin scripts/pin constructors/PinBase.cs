@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -8,7 +9,7 @@ public class PinBase : MonoBehaviour
     public float points =  10;
     public float GMultiplier = 1;
     public float weight = 5;
-    private bool counted = false;
+    public bool counted = false;
     public IisSpecial abilityType;
 
     private Rigidbody rb;
@@ -32,6 +33,11 @@ public class PinBase : MonoBehaviour
             PointCalc.PinDropped(points, GMultiplier);
             counted = true;
         }
+    }
+
+    public static void DestroyPin(PinBase pin)
+    {
+        Destroy(pin);
     }
 }
 
