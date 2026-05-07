@@ -35,11 +35,6 @@ public class PinBase : MonoBehaviour
             Destroy(this.gameObject, 10);
         }
     }
-
-    public void DestroyPin(PinBase pin)
-    {
-        Destroy(this.gameObject);
-    }
 }
 
 public interface IisSpecial
