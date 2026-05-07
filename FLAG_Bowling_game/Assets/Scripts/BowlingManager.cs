@@ -19,8 +19,6 @@ public class BowlingManager : MonoBehaviour
 
     private bool roundReady = false;
 
-    GameObject[] pins;
-
     private void Awake()
     {
         ballManager.bowlingStarted.AddListener(bowlingStarted);
@@ -65,13 +63,6 @@ public class BowlingManager : MonoBehaviour
     public void pinDropped()
     {
         CancelInvoke("pinsReset");
-        foreach (PinBase pin in Object.FindObjectsByType<PinBase>(FindObjectsSortMode.None))
-        {
-            if (pin.counted == true)
-            {
-                PinBase.DestroyPin(pin);
-            }
-        }
         Invoke("pinsReset", pinResetTime);
     }
 
@@ -82,7 +73,6 @@ public class BowlingManager : MonoBehaviour
         int dropped;
         float adPoints;
         float adMulti;
-        pins = GameObject.FindGameObjectsWithTag("Pin");
 
         (points, multi, dropped) = PointCalc.getPointsMultiPins();
         (adPoints, adMulti) = ballManager.getAdditionalScore();
@@ -120,6 +110,11 @@ public class BowlingManager : MonoBehaviour
 
     private void newRound()
     {
+        GameObject[] pins = GameObject.FindGameObjectsWithTag("Pin");
+        foreach (GameObject pin in pins)
+        {
+            Destroy(pin.gameObject);
+        }
         round++;
         pinStoreManager.setShopOpen(true);
         ballManager.spawnBalls();

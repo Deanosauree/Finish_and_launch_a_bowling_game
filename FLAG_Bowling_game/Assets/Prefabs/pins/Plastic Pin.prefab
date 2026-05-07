@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3965184808112793551}
   - component: {fileID: 5086577480050161261}
   - component: {fileID: 2466216471784616327}
+  - component: {fileID: 2663467252560689925}
   m_Layer: 0
   m_Name: model
   m_TagString: Untagged
@@ -90,6 +91,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2663467252560689925
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016565639753128059}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 7c4f48751d7b2b94db0d68e58b33cf26, type: 2}
 --- !u!1 &7047711554655907528
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +122,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7756892935066521392}
-  - component: {fileID: 4303972083186084370}
   - component: {fileID: 5619321860844526209}
   - component: {fileID: 1548451572903068152}
   - component: {fileID: -4472411169178282993}
@@ -126,29 +148,6 @@ Transform:
   - {fileID: 3965184808112793551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &4303972083186084370
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7047711554655907528}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5619321860844526209
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -212,3 +211,4 @@ MonoBehaviour:
   points: 10
   GMultiplier: 1
   weight: 1
+  counted: 0

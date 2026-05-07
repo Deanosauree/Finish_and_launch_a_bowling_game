@@ -32,12 +32,13 @@ public class PinBase : MonoBehaviour
         {
             PointCalc.PinDropped(points, GMultiplier);
             counted = true;
+            Destroy(this.gameObject, 10);
         }
     }
 
-    public static void DestroyPin(PinBase pin)
+    public void DestroyPin(PinBase pin)
     {
-        Destroy(pin);
+        Destroy(this.gameObject);
     }
 }
 
