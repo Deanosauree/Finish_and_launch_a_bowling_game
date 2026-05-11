@@ -73,6 +73,7 @@ public class BowlingManager : MonoBehaviour
         int dropped;
         float adPoints;
         float adMulti;
+
         (points, multi, dropped) = PointCalc.getPointsMultiPins();
         (adPoints, adMulti) = ballManager.getAdditionalScore();
 
@@ -109,6 +110,11 @@ public class BowlingManager : MonoBehaviour
 
     private void newRound()
     {
+        GameObject[] pins = GameObject.FindGameObjectsWithTag("Pin");
+        foreach (GameObject pin in pins)
+        {
+            Destroy(pin.gameObject);
+        }
         round++;
         pinStoreManager.setShopOpen(true);
         ballManager.spawnBalls();
