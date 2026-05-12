@@ -64,6 +64,7 @@ public class BowlingManager : MonoBehaviour
     {
         CancelInvoke("pinsReset");
         Invoke("pinsReset", pinResetTime);
+        Debug.Log("Pin Dropped");
     }
 
     public void pinsReset() // CLEAR PINS EITHER BEFORE CALLING AN EVENT THAT CALLS THIS, OR CALL THE CLEAR PIN FUNCTION HERE
