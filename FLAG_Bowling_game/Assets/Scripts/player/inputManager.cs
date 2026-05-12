@@ -14,6 +14,7 @@ public class inputManager : MonoBehaviour
     ballManager ballManager;
 
     private bool isShuffle = false;
+    private bool bowling = false;
 
 
     void Start()
