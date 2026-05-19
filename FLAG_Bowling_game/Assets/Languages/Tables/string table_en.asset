@@ -146,6 +146,48 @@ MonoBehaviour:
     m_Localized: Watermelon Ball
     m_Metadata:
       m_Items: []
+  - m_Id: 3592653962399744
+    m_Localized: Cheap, light, and easy to knock down. Perfect for starting out!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592620110172160
+    m_Localized: This is a sturdy one. However, knocking it over rewards you greatly!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592571007455232
+    m_Localized: Pretty drab weight and reward. That said, I wouldn't use this pin
+      with the Giant Snowball unless you're into avalanches.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592733134082048
+    m_Localized: KABOOM! I'd cover my ears if I knocked this pin over!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592679656706048
+    m_Localized: This pin slips all over the place, perfect for knocking over other
+      pins!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592457660583936
+    m_Localized: Knocking this pin over will take much power and a pretty hefty bowling
+      ball, but with plenty compensation!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592535162933248
+    m_Localized: You're playing in the big leagues with these! Highly valuable and
+      especially shiny!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3593288132775936
+    m_Localized: Beware of this pin's infectious effects! [Crazy Lanes is not responsible
+      for any liability or harm involving the use of radioactivity].
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3592709310435328
+    m_Localized: All these other pins are quite pitiful, really. You wanna make some
+      real money?
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
