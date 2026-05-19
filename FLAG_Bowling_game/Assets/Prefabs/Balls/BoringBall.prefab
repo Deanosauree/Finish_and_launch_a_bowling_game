@@ -55,7 +55,9 @@ MonoBehaviour:
   baseAccuracy: 1
   baseSize: 1.3
   baseBounce: 1
-  baseSpeed: 1
+  baseSpeed: 1.1
+  additionalMult: 0
+  additionalPoints: 0
 --- !u!54 &5974211072964865892
 Rigidbody:
   m_ObjectHideFlags: 0

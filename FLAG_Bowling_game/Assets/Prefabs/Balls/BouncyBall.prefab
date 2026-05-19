@@ -51,11 +51,13 @@ MonoBehaviour:
   destroyBall:
     m_PersistentCalls:
       m_Calls: []
-  baseWeight: 0.5
+  baseWeight: 0.8
   baseAccuracy: 4
-  baseSize: 0.5
-  baseBounce: 20
-  baseSpeed: 1
+  baseSize: 0.75
+  baseBounce: 10
+  baseSpeed: 0.5
+  additionalMult: 0
+  additionalPoints: 0
 --- !u!54 &5974211072964865892
 Rigidbody:
   m_ObjectHideFlags: 0

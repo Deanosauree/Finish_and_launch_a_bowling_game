@@ -52,16 +52,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   baseWeight: 15
-  baseAccuracy: 0.3
-  baseSize: 1.5
-  baseBounce: 0.7
-  baseSpeed: 1
+  baseAccuracy: 0.4
+  baseSize: 1.6
+  baseBounce: 1.25
+  baseSpeed: 3.5
+  additionalMult: 0
+  additionalPoints: 0
   exp: {fileID: 1121192042590650, guid: 87056acaee9f6524b9332e5c28763e6b, type: 3}
-  expForce: 800
-  radius: 5
+  expForce: 300
+  radius: 1.3
   upwardsModifier: 2
-  timeDelay: 1.5
-  hitsToKaboom: 3
+  hitsToKaboom: 5
 --- !u!54 &5974211072964865892
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -55,10 +55,12 @@ MonoBehaviour:
   baseAccuracy: 0.7
   baseSize: 1.2
   baseBounce: 0.2
-  baseSpeed: 1
+  baseSpeed: 2.5
+  additionalMult: 0
+  additionalPoints: 0
   exp: {fileID: 1121192042590650, guid: 87056acaee9f6524b9332e5c28763e6b, type: 3}
-  expForce: 400
-  radius: 5
+  expForce: 600
+  radius: 2
   upwardsModifier: 2
   hitsToKaboom: 3
 --- !u!54 &5974211072964865892
