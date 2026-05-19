@@ -15,6 +15,7 @@ public class ballManager: MonoBehaviour
     [SerializeField] GameObject BowlingBallPrefab;
     [SerializeField] float throwPower = 1;
     [SerializeField] int upgradePercent = 50;
+    [SerializeField] float percentOfWeightUpgToSpeed = 50;
 
     private bowlingBallBase bowlingBall;
     private bool ballHeld = false;
@@ -143,6 +144,10 @@ public class ballManager: MonoBehaviour
             }
             bowlingBall = ballChoices[index];
             bowlingBallData[chosenUpgrades[index]] += upgradePercent;
+            if (chosenUpgrades[index] == "weight")
+            {
+                bowlingBallData["speed"] += upgradePercent * (percentOfWeightUpgToSpeed/100);
+            }
             bowlingBall.destroyBall.AddListener(destroyBall);
             startHoldingBall();
             for (int i = 0; i < ballChoices.Length; i++)

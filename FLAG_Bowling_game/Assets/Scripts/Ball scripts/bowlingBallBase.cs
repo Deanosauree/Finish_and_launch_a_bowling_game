@@ -161,11 +161,11 @@ public abstract class bowlingBallBase : MonoBehaviour
     public void throwBall(float power)
     {
         GetComponent<Rigidbody>().isKinematic = false;
-        rb.AddForce(transform.forward * 100 * power);
+        rb.AddForce(transform.forward * 100 * power*speed);
         float variance = Random.Range(-10, 11);
         Debug.Log("variance: " + variance);
         Debug.Log("Variance/accuracy: " + variance/accuracy);
-        rb.AddForce(transform.right * (variance/accuracy) * 10 * speed);
+        rb.AddForce(transform.right * (variance/accuracy) * 10);
 
     }
 }
