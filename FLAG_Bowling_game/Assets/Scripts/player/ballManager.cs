@@ -18,7 +18,6 @@ public class ballManager: MonoBehaviour
 
     private bowlingBallBase bowlingBall;
     private bool ballHeld = false;
-    private bool bowling = false;
     private bowlingBallBase[] ballChoices;
     private string[] chosenUpgrades = new string[3];
     private cameraController playerCam;
@@ -73,26 +72,31 @@ public class ballManager: MonoBehaviour
     {
         if (ballHeld)
         {
-            if (bowling)
+            if (PlayerInfo.bowling)
             {
                 Debug.Log("throwing");
                 bowlingBall.throwBall(throwPower);
                 ballHeld = false;
-                bowling = false;
-                playerCam.bowling = false;
+                PlayerInfo.bowling = false;
+                PlayerInfo.bowling = false;
                 playerCam.showLine(false);
             }
             else 
             {
-                bowling = true;
+                PlayerInfo.bowling = true;
                 bowlingStarted.Invoke();
-                playerCam.bowling = true;
+                PlayerInfo.bowling = true;
+                
                 playerCam.showLine(true);
             }
             
         }
     }
 
+    public void resetShuffle()
+    {
+        playerCam.resetShufflePan();
+    }
     public void destroyBall()
     {
         if ( bowlingBall != null)

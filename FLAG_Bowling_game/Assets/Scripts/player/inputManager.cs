@@ -14,7 +14,6 @@ public class inputManager : MonoBehaviour
     ballManager ballManager;
 
     private bool isShuffle = false;
-    private bool bowling = false;
 
 
     void Start()
@@ -40,7 +39,7 @@ public class inputManager : MonoBehaviour
             enCameraPanDirections thisDirection = enCameraPanDirections.none;
             if (direction.x == 1)
             {
-                thisDirection = enCameraPanDirections.right;
+                 thisDirection = enCameraPanDirections.right;
             }
             else if (direction.x == -1)
             {
@@ -70,29 +69,19 @@ public class inputManager : MonoBehaviour
     public void OnPan(InputValue value)
     {
         float pressvalue = value.Get<float>();
-
-        if (!isShuffle)
+        if (PlayerInfo.bowling)
         {
             cameraControl.throwPan(pressvalue);
-        }
-        else 
-        {
-            cameraControl.throwShuffle(pressvalue);
         }
         
     }
 
-    public void OnPanState(InputValue value)
+    public void OnShuffle(InputValue value)
     {
         float pressvalue = value.Get<float>();
-        switch (pressvalue) 
-        { 
-            case -1:
-                isShuffle = false; break;
-            case 1:
-                isShuffle = true; break;
-            default:
-                break;
+        if (PlayerInfo.bowling)
+        {
+            cameraControl.throwShuffle(pressvalue);
         }
     }
 

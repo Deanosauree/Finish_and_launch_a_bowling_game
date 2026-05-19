@@ -120,15 +120,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""panState"",
-                    ""type"": ""Value"",
-                    ""id"": ""1ec2525f-d916-4e82-975b-14ed769f6f0d"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Escape"",
                     ""type"": ""PassThrough"",
                     ""id"": ""d0ff2af6-0661-469a-8a27-380980f968f0"",
@@ -136,6 +127,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""shuffle"",
+                    ""type"": ""Value"",
+                    ""id"": ""8d110a4c-070d-4441-986f-6639ea77a9c3"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -338,39 +338,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""941ffe6a-8674-42e1-b0bf-51f8232e21cc"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""panState"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""e7c3ce8d-5946-45de-ab5c-7d2ee6fbe7f3"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""panState"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""4b7b113b-b2b2-460f-88f6-9b02f7aaeda9"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""panState"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
                     ""id"": ""43ae5668-87db-4aab-b6d7-108bf15b47c0"",
                     ""path"": ""<Keyboard>/escape"",
@@ -391,6 +358,39 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Escape"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""baf295db-9b73-4c84-85e0-819d6c43a7dd"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""shuffle"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""5fe8fa83-ba05-45b1-a67f-0071c427a85e"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""shuffle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""916d1799-6e6b-4594-8f1d-ba3a5b6704de"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""shuffle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -402,8 +402,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_bowlingControls_look = m_bowlingControls.FindAction("look", throwIfNotFound: true);
         m_bowlingControls_interact = m_bowlingControls.FindAction("interact", throwIfNotFound: true);
         m_bowlingControls_pan = m_bowlingControls.FindAction("pan", throwIfNotFound: true);
-        m_bowlingControls_panState = m_bowlingControls.FindAction("panState", throwIfNotFound: true);
         m_bowlingControls_Escape = m_bowlingControls.FindAction("Escape", throwIfNotFound: true);
+        m_bowlingControls_shuffle = m_bowlingControls.FindAction("shuffle", throwIfNotFound: true);
     }
 
     ~@PlayerInputs()
@@ -487,8 +487,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_bowlingControls_look;
     private readonly InputAction m_bowlingControls_interact;
     private readonly InputAction m_bowlingControls_pan;
-    private readonly InputAction m_bowlingControls_panState;
     private readonly InputAction m_bowlingControls_Escape;
+    private readonly InputAction m_bowlingControls_shuffle;
     /// <summary>
     /// Provides access to input actions defined in input action map "bowlingControls".
     /// </summary>
@@ -513,13 +513,13 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @pan => m_Wrapper.m_bowlingControls_pan;
         /// <summary>
-        /// Provides access to the underlying input action "bowlingControls/panState".
-        /// </summary>
-        public InputAction @panState => m_Wrapper.m_bowlingControls_panState;
-        /// <summary>
         /// Provides access to the underlying input action "bowlingControls/Escape".
         /// </summary>
         public InputAction @Escape => m_Wrapper.m_bowlingControls_Escape;
+        /// <summary>
+        /// Provides access to the underlying input action "bowlingControls/shuffle".
+        /// </summary>
+        public InputAction @shuffle => m_Wrapper.m_bowlingControls_shuffle;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -555,12 +555,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @pan.started += instance.OnPan;
             @pan.performed += instance.OnPan;
             @pan.canceled += instance.OnPan;
-            @panState.started += instance.OnPanState;
-            @panState.performed += instance.OnPanState;
-            @panState.canceled += instance.OnPanState;
             @Escape.started += instance.OnEscape;
             @Escape.performed += instance.OnEscape;
             @Escape.canceled += instance.OnEscape;
+            @shuffle.started += instance.OnShuffle;
+            @shuffle.performed += instance.OnShuffle;
+            @shuffle.canceled += instance.OnShuffle;
         }
 
         /// <summary>
@@ -581,12 +581,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @pan.started -= instance.OnPan;
             @pan.performed -= instance.OnPan;
             @pan.canceled -= instance.OnPan;
-            @panState.started -= instance.OnPanState;
-            @panState.performed -= instance.OnPanState;
-            @panState.canceled -= instance.OnPanState;
             @Escape.started -= instance.OnEscape;
             @Escape.performed -= instance.OnEscape;
             @Escape.canceled -= instance.OnEscape;
+            @shuffle.started -= instance.OnShuffle;
+            @shuffle.performed -= instance.OnShuffle;
+            @shuffle.canceled -= instance.OnShuffle;
         }
 
         /// <summary>
@@ -649,18 +649,18 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPan(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "panState" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnPanState(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Escape" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnEscape(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "shuffle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShuffle(InputAction.CallbackContext context);
     }
 }

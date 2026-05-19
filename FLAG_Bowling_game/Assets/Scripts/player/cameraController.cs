@@ -19,8 +19,6 @@ public class cameraController : MonoBehaviour
     private float[] zooms = {30,40,60 };
     private Vector3 defaultLocation;
     private Vector3 cameraEulers = new Vector3(0, 0, 0);
-
-    public bool bowling = false;
     private IEnumerator lookRoutine;
 
     private Vector2 currentShufflePan = new Vector2(0,0);
@@ -62,33 +60,39 @@ public class cameraController : MonoBehaviour
                 currentDirection = directions.lane;
                 break;
             case enCameraPanDirections.left:
-                if (currentDirection == directions.shop)
+                if (!PlayerInfo.bowling)
                 {
-                    goTo(laneLocation + new Vector3(0, currentShufflePan.y, 0), defaultLocation + new Vector3(currentShufflePan.x, 0, 0));
-                    thisCamera.fieldOfView = zooms[2];
-                    currentDirection = directions.lane;
-                }
-                else
-                {
-                    goTo(ballsLocationne, defaultLocation);
-                    thisCamera.fieldOfView = zooms[1];
-                    currentDirection = directions.balls;
-                    showLine(false);
+                    if (currentDirection == directions.shop)
+                    {
+                        goTo(laneLocation + new Vector3(0, currentShufflePan.y, 0), defaultLocation + new Vector3(currentShufflePan.x, 0, 0));
+                        thisCamera.fieldOfView = zooms[2];
+                        currentDirection = directions.lane;
+                    }
+                    else
+                    {
+                        goTo(ballsLocationne, defaultLocation);
+                        thisCamera.fieldOfView = zooms[1];
+                        currentDirection = directions.balls;
+                        showLine(false);
+                    }
                 }
                 break;
             case enCameraPanDirections.right:
-                if (currentDirection == directions.balls)
+                if (!PlayerInfo.bowling)
                 {
-                    goTo(laneLocation + new Vector3(0, currentShufflePan.y, 0), defaultLocation + new Vector3(currentShufflePan.x, 0, 0));
-                    thisCamera.fieldOfView = zooms[2];
-                    currentDirection = directions.lane;
-                }
-                else
-                {
-                    thisCamera.fieldOfView = zooms[1];
-                    goTo(shopLocation, defaultLocation);
-                    currentDirection = directions.shop;
-                    showLine(false);
+                    if (currentDirection == directions.balls)
+                    {
+                        goTo(laneLocation + new Vector3(0, currentShufflePan.y, 0), defaultLocation + new Vector3(currentShufflePan.x, 0, 0));
+                        thisCamera.fieldOfView = zooms[2];
+                        currentDirection = directions.lane;
+                    }
+                    else
+                    {
+                        thisCamera.fieldOfView = zooms[1];
+                        goTo(shopLocation, defaultLocation);
+                        currentDirection = directions.shop;
+                        showLine(false);
+                    }
                 }
                 break;
         }
@@ -96,7 +100,7 @@ public class cameraController : MonoBehaviour
 
     public void showLine(bool visible)
     {
-        if (bowling)
+        if (PlayerInfo.bowling)
         {
             pointingLine.SetActive(visible);
         }
@@ -107,9 +111,16 @@ public class cameraController : MonoBehaviour
 
     }
 
+    public void resetShufflePan()
+    {
+        currentShufflePan = Vector2.zero;
+        PanCamera(enCameraPanDirections.down);
+        PanCamera(enCameraPanDirections.up);
+    }
+
     public void throwPan(float direction)
     {
-        if (currentDirection == directions.lane & bowling)
+        if (currentDirection == directions.lane & PlayerInfo.bowling)
         {
             currentShufflePan.y += panStep * direction;
             currentShufflePan.y = Mathf.Clamp(currentShufflePan.y, -panCap, panCap);
@@ -124,7 +135,7 @@ public class cameraController : MonoBehaviour
 
     public void throwShuffle(float direction)
     {
-        if (currentDirection == directions.lane & bowling)
+        if (currentDirection == directions.lane & PlayerInfo.bowling)
         {
             currentShufflePan.x += shuffleStep * direction;
             currentShufflePan.x = Mathf.Clamp(currentShufflePan.x, -shuffleCap, shuffleCap);

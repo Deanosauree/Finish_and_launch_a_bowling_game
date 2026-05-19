@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 public class BowlingManager : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class BowlingManager : MonoBehaviour
     [SerializeField] pinStoreManager pinStoreManager;
     [SerializeField] PinSpawner pinSpawner;
     [SerializeField] float pinResetTime;
+    [SerializeField] GameObject controlsUI;
 
     private int ballsPerRound = 2;
     private int ballsThrown = 0;
     private int round = 0;
     private float totalPoints;
+    private bool controlsEnabled = true;
 
     private bool roundReady = false;
 
@@ -48,6 +51,7 @@ public class BowlingManager : MonoBehaviour
             icePinChance: weights["icePin"], sliverPinChance: weights["silverPin"], tungstenPinChance: weights["tungstenPin"],
             tournamentPinChance: weights["tournamentPin"], goldenPinChance: weights["goldPin"]);
         pinSpawner.SpawnAllPins();
+        showControls(true);
     }
 
     public void setBallType(GameObject ballPrefab)
@@ -65,6 +69,19 @@ public class BowlingManager : MonoBehaviour
         CancelInvoke("pinsReset");
         Invoke("pinsReset", pinResetTime);
         Debug.Log("Pin Dropped");
+    }
+
+    public void showControls(bool arg)
+    {
+        if (controlsEnabled)
+        {
+            controlsUI.SetActive(arg);
+        }
+        else
+        {
+            controlsUI.SetActive(false);
+        }
+        
     }
 
     public void pinsReset() // CLEAR PINS EITHER BEFORE CALLING AN EVENT THAT CALLS THIS, OR CALL THE CLEAR PIN FUNCTION HERE
@@ -87,6 +104,7 @@ public class BowlingManager : MonoBehaviour
         Debug.Log($"The score is: {finalScore}, Balls thrown in {ballsThrown}");
 
         ballManager.destroyBall();
+        ballManager.resetShuffle();
         if (dropped == 100)
         {
             ballsThrown = 0;
