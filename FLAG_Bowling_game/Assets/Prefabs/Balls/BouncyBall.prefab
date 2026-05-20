@@ -53,9 +53,9 @@ MonoBehaviour:
       m_Calls: []
   baseWeight: 0.8
   baseAccuracy: 4
-  baseSize: 0.75
+  baseSize: 0.8
   baseBounce: 10
-  baseSpeed: 0.5
+  baseSpeed: 0.4
   additionalMult: 0
   additionalPoints: 0
 --- !u!54 &5974211072964865892

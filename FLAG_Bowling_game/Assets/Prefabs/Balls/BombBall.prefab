@@ -62,7 +62,7 @@ MonoBehaviour:
   expForce: 600
   radius: 2
   upwardsModifier: 2
-  hitsToKaboom: 3
+  hitsToKaboom: 4
 --- !u!54 &5974211072964865892
 Rigidbody:
   m_ObjectHideFlags: 0
