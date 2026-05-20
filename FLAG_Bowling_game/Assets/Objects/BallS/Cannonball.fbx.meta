@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a7a211b81f6231e42ad24701b6da77d1
+guid: 90db299c2e7e47744a055d75007aec66
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -8,7 +8,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.003
-    second: {fileID: 2100000, guid: f5e83c09837563249a34048c7234cc62, type: 2}
+    second: {fileID: 2100000, guid: 759c1c4c964dc7043978d74c47da760a, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cannonball mat
+    second: {fileID: 2800000, guid: 7719f7f96187916409cbe31221b0dfba, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Canonball col
+    second: {fileID: 2800000, guid: c5803210f9bfb8a45adae94de1eac855, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Canonball rough
+    second: {fileID: 2800000, guid: 01331b3007a36674f9253f79a68d0a30, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

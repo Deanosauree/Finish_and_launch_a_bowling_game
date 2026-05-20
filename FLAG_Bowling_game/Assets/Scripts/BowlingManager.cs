@@ -86,6 +86,8 @@ public class BowlingManager : MonoBehaviour
 
     public void pinsReset() // CLEAR PINS EITHER BEFORE CALLING AN EVENT THAT CALLS THIS, OR CALL THE CLEAR PIN FUNCTION HERE
     {
+        PointCalc.evenRound = !PointCalc.evenRound;
+        Debug.Log("Even roung = " + PointCalc.evenRound);
         float points;
         float multi;
         int dropped;

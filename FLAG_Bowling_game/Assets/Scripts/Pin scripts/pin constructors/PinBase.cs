@@ -11,13 +11,25 @@ public class PinBase : MonoBehaviour
     public float weight = 5;
     public bool counted = false;
     public IisSpecial abilityType;
-
+    
+    private bool evenRound = false;
     private Rigidbody rb;
+    private Vector3 startPos;
+    private float checkOffset;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.mass = weight;
+        startPos = transform.position;
+        evenRound = PointCalc.evenRound;
+        checkOffset = ((float)Random.Range(100, 300)) / 100;
+    }
+
+    private void Start()
+    {
+        
+        InvokeRepeating("checkTilted", checkOffset, 3);
     }
 
     public void TryDoAbility()
@@ -27,13 +39,43 @@ public class PinBase : MonoBehaviour
 
 
     private void OnTriggerEnter(Collider other)
-    {
+    {/*
         if((other.CompareTag("Pin")  || other.CompareTag("Ground")) && counted == false)
+        {
+            triggered = true;
+            
+        }*/
+    }
+
+    private void checkTilted()
+    {
+        float difference = Quaternion.Angle(Quaternion.identity, transform.rotation);
+        bool round = PointCalc.evenRound;
+        if ( difference > 45 && !counted && round == evenRound)
         {
             PointCalc.PinDropped(points, GMultiplier);
             counted = true;
-            Destroy(this.gameObject, 10);
         }
+        if (evenRound != round)
+        {
+            if (counted)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                rb.isKinematic = true;
+                transform.position = startPos;
+                transform.rotation = Quaternion.identity;
+                Invoke("setMoving", 5-checkOffset);
+            }
+            evenRound = PointCalc.evenRound;
+        }
+    }
+
+    private void setMoving()
+    {
+        rb.isKinematic = false;
     }
 }
 

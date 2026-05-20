@@ -7361,6 +7361,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bowling_alley_model
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d886c0af5bd2b604db277fa83d9d96ec, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16769,9 +16773,10 @@ MonoBehaviour:
   - {fileID: 1173025026}
   - {fileID: 994997542}
   ballDisplay: {fileID: 0}
-  BowlingBallPrefab: {fileID: 5258841345652020079, guid: 9ac0858066ebbeb4fa14bcf67eda50a5, type: 3}
+  BowlingBallPrefab: {fileID: 5258841345652020079, guid: ba47983073cf5d8458e0f0c4993ec54f, type: 3}
   throwPower: 15
   upgradePercent: 50
+  percentOfWeightUpgToSpeed: 50
   bowlingStarted:
     m_PersistentCalls:
       m_Calls: []

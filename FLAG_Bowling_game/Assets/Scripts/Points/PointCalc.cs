@@ -9,6 +9,8 @@ public static class PointCalc
     private static float totalPoints = 0;
     private static float multyplier = 1.0f;
 
+    public static bool evenRound = false;
+
     public static event Notify PinDroppedEvent;
 
 

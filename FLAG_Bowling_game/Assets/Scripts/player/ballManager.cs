@@ -76,11 +76,13 @@ public class ballManager: MonoBehaviour
             if (PlayerInfo.bowling)
             {
                 Debug.Log("throwing");
+                bowlingBall.setLocation(new Vector3(ballHoldLocation.position.x, ballHoldLocation.position.y - 0.6f, ballHoldLocation.position.z), ballHoldLocation.rotation);
                 bowlingBall.throwBall(throwPower);
                 ballHeld = false;
                 PlayerInfo.bowling = false;
                 PlayerInfo.bowling = false;
                 playerCam.showLine(false);
+                Debug.Log("Quat diff " + Quaternion.Angle(Quaternion.identity, new Quaternion(0.635062635f, 0.0926584825f, -0.32176429f, 0.69611609f)));
             }
             else 
             {
