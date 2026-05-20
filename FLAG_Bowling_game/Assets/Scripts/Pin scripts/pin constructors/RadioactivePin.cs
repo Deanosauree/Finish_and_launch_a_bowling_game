@@ -13,7 +13,14 @@ public class RadioactivePin : PinBase
     {
         if (other.CompareTag("Pin"))
         {
-            //add multiplier
+            PinBase pinScript = other.GetComponent<PinBase>();
+            if (pinScript != null) 
+            {
+                if (!pinScript.isMultAdded) 
+                { 
+                    pinScript.GMultiplier *= GMultiplier;
+                }
+            }
         }
     }
 }

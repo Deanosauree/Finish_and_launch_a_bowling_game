@@ -14,8 +14,6 @@ public static class PointCalc
     public static event Notify PinDroppedEvent;
 
 
-
-
     public static void PinDropped(float points, float mult)
     {
         pinsDropped ++;
