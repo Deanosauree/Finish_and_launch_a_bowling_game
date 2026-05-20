@@ -16,9 +16,9 @@ public class ballManager: MonoBehaviour
     [SerializeField] float throwPower = 1;
     [SerializeField] int upgradePercent = 50;
     [SerializeField] float percentOfWeightUpgToSpeed = 50;
-
     private bowlingBallBase bowlingBall;
     private bool ballHeld = false;
+
     private bowlingBallBase[] ballChoices;
     private string[] chosenUpgrades = new string[3];
     private cameraController playerCam;
@@ -26,9 +26,8 @@ public class ballManager: MonoBehaviour
     private (float, float) pointsAndMulti;
 
     public UnityEvent bowlingStarted;
-
     public UnityEvent ballSelected;
-
+    public bool roundRunning = false;
     private Dictionary<string, float> bowlingBallData = new Dictionary<string, float> { { "weight", 0 }, { "accuracy", 0 }, { "size", 0 }, { "bounce", 0 }, { "speed", 0 } };
     
 
@@ -75,14 +74,13 @@ public class ballManager: MonoBehaviour
         {
             if (PlayerInfo.bowling)
             {
-                Debug.Log("throwing");
                 bowlingBall.setLocation(new Vector3(ballHoldLocation.position.x, ballHoldLocation.position.y - 0.6f, ballHoldLocation.position.z), ballHoldLocation.rotation);
                 bowlingBall.throwBall(throwPower);
                 ballHeld = false;
+                roundRunning = true;
                 PlayerInfo.bowling = false;
                 PlayerInfo.bowling = false;
                 playerCam.showLine(false);
-                Debug.Log("Quat diff " + Quaternion.Angle(Quaternion.identity, new Quaternion(0.635062635f, 0.0926584825f, -0.32176429f, 0.69611609f)));
             }
             else 
             {
@@ -104,6 +102,10 @@ public class ballManager: MonoBehaviour
     {
         if ( bowlingBall != null)
         {
+            if (roundRunning)
+            {
+                PointCalc.PinDropped(0, 1);
+            }
             bowlingBall.destroyBall.RemoveAllListeners();
             Destroy(bowlingBall.gameObject);
             bowlingBall = null;
@@ -157,7 +159,6 @@ public class ballManager: MonoBehaviour
                 if (i != index)
                 {
                     Destroy(ballChoices[i].gameObject);
-                    Debug.Log("Destroying Ball " + index);
                 }
             }
             upgradeUI.SetUpgradesVisible(false);

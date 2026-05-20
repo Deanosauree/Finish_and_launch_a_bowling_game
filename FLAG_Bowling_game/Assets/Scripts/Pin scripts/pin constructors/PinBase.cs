@@ -11,11 +11,12 @@ public class PinBase : MonoBehaviour
     public float weight = 5;
     public bool counted = false;
     public IisSpecial abilityType;
+    public bool isMultAdded = false;
     
     private bool evenRound = false;
     private Rigidbody rb;
     private Vector3 startPos;
-    private float checkOffset;
+    protected float checkOffset;
 
     private void Awake()
     {

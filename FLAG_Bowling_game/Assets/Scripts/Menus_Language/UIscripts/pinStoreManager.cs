@@ -11,7 +11,8 @@ public class pinStoreManager : MonoBehaviour
 
     [SerializeField] LocalizedString points;
 
-    private int[] timesPinsPurchased; 
+    private int[] timesPinsPurchased;
+    private int[] timesThesePurchased;
     private int[] chosenPins;
     public float currentPoints;
     private System.Random rand = new System.Random();
@@ -20,6 +21,7 @@ public class pinStoreManager : MonoBehaviour
     {
         timesPinsPurchased = new int[pinAttributes.Length];
         chosenPins = new int[uiController.buttonCount];
+        timesThesePurchased = new int[uiController.buttonCount];
         uiController.upgradePressed.AddListener(cardPressed);
         uiController.upgradeHovered.AddListener(cardHovered);
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
@@ -63,9 +65,10 @@ public class pinStoreManager : MonoBehaviour
         foreach (int chosen in chosenPins)
         {
             chosenPinAttributes.Add(pinAttributes[chosen]);
+
         }
         PinCostAttributes[] chosenAttArr = chosenPinAttributes.ToArray();
-        uiController.SetUpgrades(chosenAttArr, timesPinsPurchased);
+        uiController.SetUpgrades(chosenAttArr, timesThesePurchased);
         uiController.SetUpgradesVisible(true);
     }
 
@@ -93,6 +96,7 @@ public class pinStoreManager : MonoBehaviour
                 currentPin += 1;
             }
             chosenPins[i] = currentPin;
+            timesThesePurchased[i] = timesPinsPurchased[currentPin];
             totalProbability -= chances[currentPin];
             chances[currentPin] = 0;
         }

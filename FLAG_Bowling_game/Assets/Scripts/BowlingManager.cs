@@ -20,6 +20,8 @@ public class BowlingManager : MonoBehaviour
     private float totalPoints;
     private bool controlsEnabled = true;
 
+    private bool newEven = false;
+
     private bool roundReady = false;
 
     private void Awake()
@@ -52,6 +54,7 @@ public class BowlingManager : MonoBehaviour
             tournamentPinChance: weights["tournamentPin"], goldenPinChance: weights["goldPin"]);
         pinSpawner.SpawnAllPins();
         showControls(true);
+        StartCoroutine(changeEven());
     }
 
     public void setBallType(GameObject ballPrefab)
@@ -86,7 +89,7 @@ public class BowlingManager : MonoBehaviour
 
     public void pinsReset() // CLEAR PINS EITHER BEFORE CALLING AN EVENT THAT CALLS THIS, OR CALL THE CLEAR PIN FUNCTION HERE
     {
-        PointCalc.evenRound = !PointCalc.evenRound;
+        newEven = !PointCalc.evenRound;
         Debug.Log("Even roung = " + PointCalc.evenRound);
         float points;
         float multi;
@@ -103,8 +106,8 @@ public class BowlingManager : MonoBehaviour
         double finalScore = points * multi;
         totalPoints += points;
         pinStoreManager.addPoints(points);
-        Debug.Log($"The score is: {finalScore}, Balls thrown in {ballsThrown}");
-
+        Debug.Log($"The score is: {finalScore}, Balls thrown is {ballsThrown}");
+        ballManager.roundRunning = false;
         ballManager.destroyBall();
         ballManager.resetShuffle();
         if (dropped == 100)
@@ -114,6 +117,7 @@ public class BowlingManager : MonoBehaviour
         }
         else
         {
+            ballsThrown++;
             if (ballsThrown >= ballsPerRound)
             {
                 ballsThrown = 0;
@@ -122,7 +126,6 @@ public class BowlingManager : MonoBehaviour
             }
             else
             {
-                ballsThrown++;
                 ballManager.respawnBall();
             }
         }
@@ -152,6 +155,15 @@ public class BowlingManager : MonoBehaviour
                 icePinChance: weights["icePin"], sliverPinChance: weights["silverPin"], tungstenPinChance: weights["tungstenPin"],
                 tournamentPinChance: weights["tournamentPin"], goldenPinChance: weights["goldPin"]);
             pinSpawner.SpawnAllPins();
+        }
+    }
+
+    private IEnumerator changeEven()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3);
+            PointCalc.evenRound = newEven;
         }
     }
         

@@ -14,6 +14,7 @@ public class ExplosivePin : PinBase
     private void Start()
     {
         abilityType = gameObject.AddComponent<Explosion>();
+        InvokeRepeating("checkTilted", checkOffset, 3);
     }
     
     private void OnTriggerEnter(Collider other)
@@ -22,7 +23,6 @@ public class ExplosivePin : PinBase
         {
             TryDoAbility();
             GameObject explosion = Instantiate(exp, transform.position, quaternion.identity);
-            PointCalc.PinDropped(points, GMultiplier);
             canExplode = false;
             Destroy(explosion, 2);
         }
