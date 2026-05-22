@@ -21,14 +21,17 @@ public class ballManager: MonoBehaviour
 
     private bowlingBallBase[] ballChoices;
     private string[] chosenUpgrades = new string[3];
+    private LocalizedString[] chosenUpgradesLocale = new LocalizedString[3];
+    
     private cameraController playerCam;
 
     private (float, float) pointsAndMulti;
-
+    public bool readyToBowl = true;
     public UnityEvent bowlingStarted;
     public UnityEvent ballSelected;
     public bool roundRunning = false;
     private Dictionary<string, float> bowlingBallData = new Dictionary<string, float> { { "weight", 0 }, { "accuracy", 0 }, { "size", 0 }, { "bounce", 0 }, { "speed", 0 } };
+
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,6 +49,11 @@ public class ballManager: MonoBehaviour
     {
         upgradeUI.upgradePressed.AddListener(upgradeSelected);
         playerCam = GetComponent<cameraController>();
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+    }
+    void OnLocaleChanged(Locale newLocale)
+    {
+        upgradeUI.SetUpgradeNames($"{chosenUpgradesLocale[0].GetLocalizedString()} +{upgradePercent}%", $"{chosenUpgradesLocale[1].GetLocalizedString()} +{upgradePercent}%", $"{chosenUpgradesLocale[2].GetLocalizedString()} +{upgradePercent}%");
     }
 
 
@@ -64,13 +72,18 @@ public class ballManager: MonoBehaviour
         spawnUpgradedBalls(upgrades[0], upgrades[1], upgrades[2], new float[] { upgradePercent, upgradePercent, upgradePercent });
     }
 
+    public void setBowlReady()
+    {
+        readyToBowl = true;
+    }
+
     public void setBallType(GameObject prefab)
     {
         BowlingBallPrefab = prefab;
     }
     public void throwBall()
     {
-        if (ballHeld)
+        if (ballHeld && readyToBowl)
         {
             if (PlayerInfo.bowling)
             {
@@ -135,6 +148,7 @@ public class ballManager: MonoBehaviour
         ballHeld = true;
         ball.setHeld(ballHeld);
         setPointsAndMulti();
+        Invoke("setBowlReady", 5);
 
     }
 
@@ -190,11 +204,11 @@ public class ballManager: MonoBehaviour
         chosenUpgrades[1] = secondUpgrade;
         chosenUpgrades[2] = thirdUpgrade;
 
-         LocalizedString firstLocalised = new LocalizedString("string table", firstUpgrade);
-         LocalizedString secondLocalised = new LocalizedString("string table", secondUpgrade);
-         LocalizedString thirdLocalised = new LocalizedString("string table", thirdUpgrade);
+        chosenUpgradesLocale[0] = new LocalizedString("string table", firstUpgrade);
+        chosenUpgradesLocale[1] = new LocalizedString("string table", secondUpgrade);
+        chosenUpgradesLocale[2] = new LocalizedString("string table", thirdUpgrade);
 
-        upgradeUI.SetUpgradeNames($"{firstLocalised.GetLocalizedString()} +{values[0]}%", $"{secondLocalised.GetLocalizedString()} +{values[1]}%", $"{thirdLocalised.GetLocalizedString()} +{values[2]}%");
+        upgradeUI.SetUpgradeNames($"{chosenUpgradesLocale[0].GetLocalizedString()} +{values[0]}%", $"{chosenUpgradesLocale[1].GetLocalizedString()} +{values[1]}%", $"{chosenUpgradesLocale[2].GetLocalizedString()} +{values[2]}%");
         upgradeUI.SetUpgradesVisible(true);
         ballChoices = new bowlingBallBase[] { firstBall, secondBall, thirdball };
     }

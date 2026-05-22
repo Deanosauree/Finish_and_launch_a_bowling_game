@@ -16773,10 +16773,11 @@ MonoBehaviour:
   - {fileID: 1173025026}
   - {fileID: 994997542}
   ballDisplay: {fileID: 0}
-  BowlingBallPrefab: {fileID: 5258841345652020079, guid: ba47983073cf5d8458e0f0c4993ec54f, type: 3}
+  BowlingBallPrefab: {fileID: 5258841345652020079, guid: d491469e79d1a374092c7396477faafb, type: 3}
   throwPower: 15
   upgradePercent: 50
   percentOfWeightUpgToSpeed: 50
+  readyToBowl: 1
   bowlingStarted:
     m_PersistentCalls:
       m_Calls: []

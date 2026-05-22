@@ -69,6 +69,7 @@ public class BowlingManager : MonoBehaviour
 
     public void pinDropped()
     {
+        ballManager.readyToBowl = false;
         CancelInvoke("pinsReset");
         Invoke("pinsReset", pinResetTime);
         Debug.Log("Pin Dropped");
@@ -155,6 +156,7 @@ public class BowlingManager : MonoBehaviour
                 icePinChance: weights["icePin"], sliverPinChance: weights["silverPin"], tungstenPinChance: weights["tungstenPin"],
                 tournamentPinChance: weights["tournamentPin"], goldenPinChance: weights["goldPin"]);
             pinSpawner.SpawnAllPins();
+            ballManager.readyToBowl = true;
         }
     }
 
