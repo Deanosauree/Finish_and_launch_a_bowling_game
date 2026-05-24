@@ -120,15 +120,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Escape"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""d0ff2af6-0661-469a-8a27-380980f968f0"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""shuffle"",
                     ""type"": ""Value"",
                     ""id"": ""8d110a4c-070d-4441-986f-6639ea77a9c3"",
@@ -338,28 +329,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""43ae5668-87db-4aab-b6d7-108bf15b47c0"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Escape"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d3594ea6-c89b-4787-ae68-8fc6e73d8e08"",
-                    ""path"": ""<Gamepad>/select"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Escape"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""1D Axis"",
                     ""id"": ""baf295db-9b73-4c84-85e0-819d6c43a7dd"",
                     ""path"": ""1DAxis"",
@@ -393,6 +362,45 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""ba8275d3-71c5-4aee-8ae3-336a4fdfa31f"",
+            ""actions"": [
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""5379008e-2f56-4add-9873-b0fe4e10a802"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f127bfe4-7758-450d-91c4-6986cd62ffe7"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""153d8486-6d53-4cb6-8167-799380b3f2e5"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -402,13 +410,16 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_bowlingControls_look = m_bowlingControls.FindAction("look", throwIfNotFound: true);
         m_bowlingControls_interact = m_bowlingControls.FindAction("interact", throwIfNotFound: true);
         m_bowlingControls_pan = m_bowlingControls.FindAction("pan", throwIfNotFound: true);
-        m_bowlingControls_Escape = m_bowlingControls.FindAction("Escape", throwIfNotFound: true);
         m_bowlingControls_shuffle = m_bowlingControls.FindAction("shuffle", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_Escape = m_Menu.FindAction("Escape", throwIfNotFound: true);
     }
 
     ~@PlayerInputs()
     {
         UnityEngine.Debug.Assert(!m_bowlingControls.enabled, "This will cause a leak and performance issues, PlayerInputs.bowlingControls.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Menu.enabled, "This will cause a leak and performance issues, PlayerInputs.Menu.Disable() has not been called.");
     }
 
     /// <summary>
@@ -487,7 +498,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_bowlingControls_look;
     private readonly InputAction m_bowlingControls_interact;
     private readonly InputAction m_bowlingControls_pan;
-    private readonly InputAction m_bowlingControls_Escape;
     private readonly InputAction m_bowlingControls_shuffle;
     /// <summary>
     /// Provides access to input actions defined in input action map "bowlingControls".
@@ -512,10 +522,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "bowlingControls/pan".
         /// </summary>
         public InputAction @pan => m_Wrapper.m_bowlingControls_pan;
-        /// <summary>
-        /// Provides access to the underlying input action "bowlingControls/Escape".
-        /// </summary>
-        public InputAction @Escape => m_Wrapper.m_bowlingControls_Escape;
         /// <summary>
         /// Provides access to the underlying input action "bowlingControls/shuffle".
         /// </summary>
@@ -555,9 +561,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @pan.started += instance.OnPan;
             @pan.performed += instance.OnPan;
             @pan.canceled += instance.OnPan;
-            @Escape.started += instance.OnEscape;
-            @Escape.performed += instance.OnEscape;
-            @Escape.canceled += instance.OnEscape;
             @shuffle.started += instance.OnShuffle;
             @shuffle.performed += instance.OnShuffle;
             @shuffle.canceled += instance.OnShuffle;
@@ -581,9 +584,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @pan.started -= instance.OnPan;
             @pan.performed -= instance.OnPan;
             @pan.canceled -= instance.OnPan;
-            @Escape.started -= instance.OnEscape;
-            @Escape.performed -= instance.OnEscape;
-            @Escape.canceled -= instance.OnEscape;
             @shuffle.started -= instance.OnShuffle;
             @shuffle.performed -= instance.OnShuffle;
             @shuffle.canceled -= instance.OnShuffle;
@@ -620,6 +620,102 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="BowlingControlsActions" /> instance referencing this action map.
     /// </summary>
     public BowlingControlsActions @bowlingControls => new BowlingControlsActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
+    private readonly InputAction m_Menu_Escape;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Menu".
+    /// </summary>
+    public struct MenuActions
+    {
+        private @PlayerInputs m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public MenuActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Menu/Escape".
+        /// </summary>
+        public InputAction @Escape => m_Wrapper.m_Menu_Escape;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="MenuActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="MenuActions" />
+        public void AddCallbacks(IMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
+            @Escape.started += instance.OnEscape;
+            @Escape.performed += instance.OnEscape;
+            @Escape.canceled += instance.OnEscape;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="MenuActions" />
+        private void UnregisterCallbacks(IMenuActions instance)
+        {
+            @Escape.started -= instance.OnEscape;
+            @Escape.performed -= instance.OnEscape;
+            @Escape.canceled -= instance.OnEscape;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="MenuActions.UnregisterCallbacks(IMenuActions)" />.
+        /// </summary>
+        /// <seealso cref="MenuActions.UnregisterCallbacks(IMenuActions)" />
+        public void RemoveCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="MenuActions.AddCallbacks(IMenuActions)" />
+        /// <seealso cref="MenuActions.RemoveCallbacks(IMenuActions)" />
+        /// <seealso cref="MenuActions.UnregisterCallbacks(IMenuActions)" />
+        public void SetCallbacks(IMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="MenuActions" /> instance referencing this action map.
+    /// </summary>
+    public MenuActions @Menu => new MenuActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "bowlingControls" which allows adding and removing callbacks.
     /// </summary>
@@ -649,18 +745,26 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPan(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Escape" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnEscape(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "shuffle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShuffle(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Menu" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="MenuActions.AddCallbacks(IMenuActions)" />
+    /// <seealso cref="MenuActions.RemoveCallbacks(IMenuActions)" />
+    public interface IMenuActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Escape" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEscape(InputAction.CallbackContext context);
     }
 }

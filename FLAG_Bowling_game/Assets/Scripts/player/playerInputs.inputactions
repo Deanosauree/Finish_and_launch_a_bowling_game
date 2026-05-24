@@ -34,15 +34,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Escape",
-                    "type": "PassThrough",
-                    "id": "d0ff2af6-0661-469a-8a27-380980f968f0",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "shuffle",
                     "type": "Value",
                     "id": "8d110a4c-070d-4441-986f-6639ea77a9c3",
@@ -252,28 +243,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "43ae5668-87db-4aab-b6d7-108bf15b47c0",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Escape",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d3594ea6-c89b-4787-ae68-8fc6e73d8e08",
-                    "path": "<Gamepad>/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Escape",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "1D Axis",
                     "id": "baf295db-9b73-4c84-85e0-819d6c43a7dd",
                     "path": "1DAxis",
@@ -305,6 +274,45 @@
                     "action": "shuffle",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "ba8275d3-71c5-4aee-8ae3-336a4fdfa31f",
+            "actions": [
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "5379008e-2f56-4add-9873-b0fe4e10a802",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f127bfe4-7758-450d-91c4-6986cd62ffe7",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "153d8486-6d53-4cb6-8167-799380b3f2e5",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
