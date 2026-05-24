@@ -10574,7 +10574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   PausePanel: {fileID: 53351534}
-  transition: {fileID: 0}
+  transition: {fileID: 8222310626607513934}
   transitionTime: 2
 --- !u!114 &1087937525
 MonoBehaviour:
