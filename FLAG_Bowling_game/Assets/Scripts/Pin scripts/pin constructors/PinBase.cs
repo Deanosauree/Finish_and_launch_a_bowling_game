@@ -12,11 +12,13 @@ public class PinBase : MonoBehaviour
     public bool counted = false;
     public IisSpecial abilityType;
     public bool isMultAdded = false;
-    
+
+    private bool played = false;
     private bool evenRound = false;
     private Rigidbody rb;
     private Vector3 startPos;
     protected float checkOffset;
+    private AudioSource auSource;
 
     private void Awake()
     {
@@ -25,6 +27,7 @@ public class PinBase : MonoBehaviour
         startPos = transform.position;
         evenRound = PointCalc.evenRound;
         checkOffset = ((float)Random.Range(100, 300)) / 100;
+        auSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -37,15 +40,17 @@ public class PinBase : MonoBehaviour
     {
         abilityType?.DoAbility();
     }
-
-
     private void OnTriggerEnter(Collider other)
-    {/*
-        if((other.CompareTag("Pin")  || other.CompareTag("Ground")) && counted == false)
+    {
+        if (!played)
         {
-            triggered = true;
-            
-        }*/
+            if (other.CompareTag("Pin"))
+            {
+                auSource.Play();
+                played = true;
+            }
+
+        }
     }
 
     private void checkTilted()
@@ -56,6 +61,8 @@ public class PinBase : MonoBehaviour
         {
             PointCalc.PinDropped(points, GMultiplier);
             counted = true;
+            auSource.Play();
+            played = true;
         }
         if (evenRound != round)
         {
@@ -77,6 +84,7 @@ public class PinBase : MonoBehaviour
     private void setMoving()
     {
         rb.isKinematic = false;
+        played = false;
     }
 }
 

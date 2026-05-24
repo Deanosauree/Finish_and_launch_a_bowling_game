@@ -34,6 +34,7 @@ public class storeUiController : MonoBehaviour
         }
         
         SetUpgradesVisible(false);
+
     }
         
     void Start()

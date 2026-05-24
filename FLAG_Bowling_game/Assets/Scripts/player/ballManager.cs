@@ -143,6 +143,7 @@ public class ballManager: MonoBehaviour
         
         bowlingBallBase ball = Instantiate(BowlingBallPrefab, this.transform, true).GetComponent<bowlingBallBase>();
         bowlingBall = ball;
+        bowlingBall.destroyBall.AddListener(destroyBall);
         ball.setLocation(ballHoldLocation.position, ballHoldLocation.rotation);
         ball.addStats(bowlingBallData["weight"], bowlingBallData["accuracy"], bowlingBallData["size"], bowlingBallData["bounce"], bowlingBallData["speed"]);
         ballHeld = true;

@@ -16,6 +16,7 @@ public class pinStoreManager : MonoBehaviour
     private int[] chosenPins;
     public float currentPoints;
     private System.Random rand = new System.Random();
+    private AudioSource auSource;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class pinStoreManager : MonoBehaviour
         uiController.upgradePressed.AddListener(cardPressed);
         uiController.upgradeHovered.AddListener(cardHovered);
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+        auSource = GetComponent<AudioSource>();
         
     }
 
@@ -134,6 +136,7 @@ public class pinStoreManager : MonoBehaviour
             timesPinsPurchased[correctedIndex]++;
             uiController.updateUpgrade(pin, index, timesPinsPurchased[correctedIndex]);
             uiController.updatePoints(currentPoints);
+            auSource.Play();
         }
         
     }
