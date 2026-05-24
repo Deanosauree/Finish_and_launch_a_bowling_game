@@ -35,6 +35,7 @@ public class cameraController : MonoBehaviour
 
     public void PanCamera(enCameraPanDirections direction)
     {
+        StopAllCoroutines();
         switch (direction) 
         { 
             case enCameraPanDirections.none:
