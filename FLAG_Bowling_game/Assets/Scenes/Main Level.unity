@@ -16925,7 +16925,7 @@ MonoBehaviour:
   - {fileID: 1173025026}
   - {fileID: 994997542}
   ballDisplay: {fileID: 0}
-  BowlingBallPrefab: {fileID: 5258841345652020079, guid: d491469e79d1a374092c7396477faafb, type: 3}
+  BowlingBallPrefab: {fileID: 5258841345652020079, guid: ee828e486f8ac0240882ad8d76f8c393, type: 3}
   throwPower: 15
   upgradePercent: 50
   percentOfWeightUpgToSpeed: 50
