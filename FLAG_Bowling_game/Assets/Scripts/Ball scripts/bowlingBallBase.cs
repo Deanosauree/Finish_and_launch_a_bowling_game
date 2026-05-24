@@ -107,8 +107,11 @@ public abstract class bowlingBallBase : MonoBehaviour
         if (rb == null) { rb = GetComponent<Rigidbody>(); }
         if (material==null) { material = GetComponent<SphereCollider>().material; }
         this.weight += (this.weight * 0.01f * weight);
+        if (rb == null) rb = GetComponent<Rigidbody>();
+        rb.mass = this.weight;
         this.accuracy += (this.accuracy * 0.01f * accuracy);
         this.size += (this.size * 0.01f * size);
+        transform.localScale = new Vector3(this.size, this.size, this.size);
         this.bounce += (this.bounce * 0.01f * bounce);
         this.speed += (this.speed * 0.01f * speed);
     }

@@ -30,7 +30,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  card: {fileID: 21300000, guid: 0c7d83bf7d730ec40bad2bf489eb0284, type: 3}
+  card: {fileID: 21300000, guid: 45f2019495335164cbe94deeb9d72942, type: 3}
   pinKey: snowPin
   pinPrice: 300
   pinChance: 15

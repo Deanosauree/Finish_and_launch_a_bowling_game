@@ -145,6 +145,7 @@ public class ballManager: MonoBehaviour
         bowlingBall = ball;
         bowlingBall.destroyBall.AddListener(destroyBall);
         ball.setLocation(ballHoldLocation.position, ballHoldLocation.rotation);
+        Debug.Log($"{bowlingBallData["weight"]}, {bowlingBallData["accuracy"]}, {bowlingBallData["size"]}, {bowlingBallData["bounce"]}, {bowlingBallData["speed"]}");
         ball.addStats(bowlingBallData["weight"], bowlingBallData["accuracy"], bowlingBallData["size"], bowlingBallData["bounce"], bowlingBallData["speed"]);
         ballHeld = true;
         ball.setHeld(ballHeld);
