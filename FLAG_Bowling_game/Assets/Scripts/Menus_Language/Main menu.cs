@@ -62,8 +62,8 @@ public class Mainmenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("Volume", Mathf.Log10(volume)*20);
-        //AudioListener.volume = volume;
+        audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
+
     }
 
     public void SetQuality(int qualityIndex)
