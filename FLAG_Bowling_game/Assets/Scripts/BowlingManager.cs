@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 public class BowlingManager : MonoBehaviour
 {
