@@ -192,6 +192,22 @@ MonoBehaviour:
     m_Localized: Main Menu
     m_Metadata:
       m_Items: []
+  - m_Id: 31058988408758272
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31072525935960064
+    m_Localized: Coders
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31072527710150656
+    m_Localized: Artists
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31072529559838720
+    m_Localized: Designers
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
